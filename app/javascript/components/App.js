@@ -48,7 +48,7 @@ class App extends Component {
 			sign_out_route,
 		} = this.props
 
-		const {decks, cards} = this.state
+		const { decks, cards } = this.state
 
 		return (
 			<Fragment>
@@ -72,7 +72,6 @@ class App extends Component {
 							render={(props) => {
 								const id = this.props.current_user.id
 								let myDecks = decks.filter((deck) => deck.user_id === id)
-								console.log('test')
 								return <DeckIndex myDecks={myDecks} />
 							}}
 						/>
@@ -82,8 +81,9 @@ class App extends Component {
 							path='/mydeck/:id'
 							render={(props) => {
 								const id = props.match.params.id
-								// let deck = decks.find((deck) => deck.id === parseInt(id))
-								let myCards = cards.filter((card) => card.deck_id === id )
+								let deck = decks.find((deck) => deck.id === parseInt(id))
+								let myCards = cards.filter((card) => card.deck_id === deck.id)
+								console.log('app js show route', myCards)
 								return decks.length > 0 && <DeckShow myCards={myCards} />
 							}}
 						/>
