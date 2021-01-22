@@ -16,11 +16,13 @@ export class DeckIndex extends Component {
 					<Row>
 						{myDecks.map((deck, index) => {
 							return (
-								<Link to={`/mydecks/${deck.id}`}>
-									<div className='deck-title-card' key={index}>
+								<Link to={`/mydeck/${deck.id}`} key={index}>
+
+									<div className='deck-title-card' >
 										<h4>{deck.title}</h4>
 										<p>{deck.description}</p>
 									</div>
+									
 								</Link>
 							)
 						})}

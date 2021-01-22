@@ -11,12 +11,14 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 
 import decks from '../mockDecks.js'
+import cards from '../mockCards.js'
 
 class App extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
 			decks: decks,
+			cards: cards,
 		}
 	}
 
@@ -37,7 +39,7 @@ class App extends Component {
 	// deleteDeck = (id) => {}
 
 	render() {
-		console.log('decks in state', this.state)
+		// console.log('decks in state', this.state)
 
 		const {
 			logged_in,
@@ -46,7 +48,7 @@ class App extends Component {
 			sign_out_route,
 		} = this.props
 
-		// const {decks} = this.state
+		const {decks, cards} = this.state
 
 		return (
 			<Fragment>
@@ -70,17 +72,19 @@ class App extends Component {
 							render={(props) => {
 								const id = this.props.current_user.id
 								let myDecks = decks.filter((deck) => deck.user_id === id)
+								console.log('test')
 								return <DeckIndex myDecks={myDecks} />
 							}}
 						/>
 
 						{/* ----- Protected Deck Show ----- */}
 						<Route
-							path='/mydecks/:id'
+							path='/mydeck/:id'
 							render={(props) => {
 								const id = props.match.params.id
-								let deck = decks.find((deck) => deck.id === parseInt(id))
-								return decks.length > 0 && <DeckShow deck={deck} />
+								// let deck = decks.find((deck) => deck.id === parseInt(id))
+								let myCards = cards.filter((card) => card.deck_id === id )
+								return decks.length > 0 && <DeckShow myCards={myCards} />
 							}}
 						/>
 
