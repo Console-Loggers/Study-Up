@@ -5,7 +5,8 @@ export class DeckShow extends Component {
 		super(props)
 		this.state = {
 			cards: this.props.myCards,
-			class: 'term',
+			index: 0,
+			isTerm: true,
 		}
 	}
 
@@ -18,16 +19,14 @@ export class DeckShow extends Component {
 	}
 
 	render() {
-		const { myCards } = this.props
+		const { cards, index, isTerm } = this.state
 		console.log('state on show page:', this.state)
 		return (
 			<Fragment>
-				return (
 				<div className='deck-title-card'>
-					<h4>{card.term}</h4>
-					<p>{card.definition}</p>
+					<h4>{cards[index].term}</h4>
+					<p>{cards[index].definition}</p>
 				</div>
-				)
 			</Fragment>
 		)
 	}

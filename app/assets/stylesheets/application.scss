@@ -83,6 +83,32 @@ header {
 }
 /* End of Header */
 
+/* Home Page */
+.home-container {
+	height: calc(100vh - 144px);
+	position: relative;
+}
+.hero-container {
+	background: url('https://www.alc.edu/wp-content/uploads/2019/05/chalkboard-background.jpg')
+		no-repeat center;
+	background-size: cover;
+	width: 100%;
+	height: 600px;
+}
+.home-title {
+	padding: 60px;
+	text-align: center;
+	color: white;
+	font-size: 30px;
+}
+.button-outline-button {
+	padding: 3px;
+	text-align: center;
+	font-size: 30px;
+}
+
+/* End Home Page */
+
 /* Deck Index Page */
 .deck-title-card {
 	width: 21rem;
@@ -169,6 +195,7 @@ header {
 	padding: 15px 35px;
 	position: fixed;
 	bottom: 0;
+	left: 0;
 }
 
 .footer-left p {

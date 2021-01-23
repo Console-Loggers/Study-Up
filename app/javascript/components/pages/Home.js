@@ -9,11 +9,11 @@ export class Home extends Component {
 					<div className='hero-container'>
 						<h1 className='home-title'>Welcome to Study Up</h1>
 						<div className='button-container'>
-							<Button className='button outline-button'>
+							<Button className='button-outline-button'>
 								<span>Sign Up</span>
 							</Button>
 
-							<Button className='button outline-button'>
+							<Button className='button-outline-button'>
 								<span>Login</span>
 							</Button>
 						</div>
