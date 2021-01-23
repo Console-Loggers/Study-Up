@@ -35,14 +35,14 @@ let cards = [
 	},
 	{
 		id: 6,
-		term: 'Comparison Operator',
+		term: 'Comparison Operator2',
 		definition:
 			'Comparison operators are used in logical statements to determine equality or difference between variables or values.',
 		deck_id: 1,
 	},
 	{
 		id: 7,
-		term: 'Comparison Operator',
+		term: 'Comparison Operator3',
 		definition:
 			'Comparison operators are used in logical statements to determine equality or difference between variables or values.',
 		deck_id: 1,
