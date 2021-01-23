@@ -10,23 +10,23 @@ class DecksController < ApplicationController
         if deck.valid?
             render json: deck
         else 
-            render json:deck.errors, status: :unprocessable_entity
+            render json: deck.errors, status: :unprocessable_entity
+        end
+    end
+    
+    def update
+        deck = Deck.find(params[:id])
+        deck.update(deck_params)
+        if deck.valid?
+            render json: deck
+        else
+            render json: deck.errors, status: :unprocessable_entity
         end
     end
 
-    # **********Both update and delete have same syntax and both are failing.**********
-
-    # def update
-    #     deck = Deck.find params[:id] deck.update(deck_params)
-    #     if deck.valid?
-    #         render json: deck
-    #     else 
-    #         render json: deck.errors, status: :unprocessable_entity
-    #     end
-    # end
-    
     def destroy
-        deck = Deck.find params[:id] deck.destroy
+        deck = Deck.find(params[:id])
+        deck.destroy
         if deck.valid?
             render json: deck
         else

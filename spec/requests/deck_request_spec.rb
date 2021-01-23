@@ -42,31 +42,31 @@ RSpec.describe "Decks", type: :request do
     end
 
     # -----Update-----
-    # it 'Updates a new deck' do
-    #     deck_params = { 
-    #         deck: {
-    #             title: 'Javascript',
-    #             description: 'JS terminology',
-    #             user_id: user.id
-    #         }
-    #     }
+    it 'Updates a new deck' do
+        deck_params = { 
+            deck: {
+                title: 'Javascript',
+                description: 'JS terminology',
+                user_id: user.id
+            }
+        }
 
-    #     post '/decks', params: deck_params
-    #     deck = Deck.first
+        post '/decks', params: deck_params
+        deck = Deck.first
 
-    #     new_deck_params = { 
-    #         deck: {
-    #             title: 'Javascript',
-    #             description: 'Terms',
-    #             user_id: user.id
-    #         }
-    #     }
+        new_deck_params = { 
+            deck: {
+                title: 'Javascript',
+                description: 'Terms',
+                user_id: user.id
+            }
+        }
 
-    #     patch "/decks/#{deck.id}", params: new_deck_params 
-    #     deck = Deck.find deck.id
-    #     expect(deck.description).to eq 'Terms'
-    #     expect(response).to have_http_status(200)
-    # end
+        patch "/decks/#{deck.id}", params: new_deck_params 
+        deck = Deck.find deck.id
+        expect(deck.description).to eq 'Terms'
+        expect(response).to have_http_status(200)
+    end
 
     # -----Delete----- 
     it 'deletes a deck' do
@@ -81,9 +81,9 @@ RSpec.describe "Decks", type: :request do
         post '/decks', params: deck_params
         deck = Deck.first
         delete "/decks/#{deck.id}"
-        apartments = Apartment.all
+        decks = Deck.all
 
-        expect(deck).to be_empty
+        expect(decks).to be_empty
         expect(response).to have_http_status(200)
     end
 
