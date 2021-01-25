@@ -6,7 +6,7 @@ export class DeckShow extends Component {
 		this.state = {
 			cards: this.props.myCards,
 			index: 0,
-			isTerm: true,
+			isTerm: false,
 		}
 	}
 
@@ -24,8 +24,16 @@ export class DeckShow extends Component {
 		return (
 			<Fragment>
 				<div className='deck-title-card'>
-					<h4>{cards[index].term}</h4>
-					<p>{cards[index].definition}</p>
+					{isTerm && (
+						<>
+							<h4>{cards[index].term}</h4>
+						</>
+					)}
+					{!isTerm && (
+						<>
+							<p>{cards[index].definition}</p>
+						</>
+					)}
 				</div>
 			</Fragment>
 		)
