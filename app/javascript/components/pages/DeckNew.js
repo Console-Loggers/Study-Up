@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import TermCard from './TermCard'
+import TermCard from '../components/TermCard'
 
 export class DeckNew extends Component {
 	constructor(props) {
@@ -8,7 +8,20 @@ export class DeckNew extends Component {
 			form: {
 				title: '',
 				description: '',
-				cards: [],
+				cards: [
+					{
+						term: '',
+						definition: '',
+					},
+					{
+						term: '',
+						definition: '',
+					},
+					{
+						term: '',
+						definition: '',
+					},
+				],
 			},
 			submitted: false,
 		}
@@ -16,24 +29,31 @@ export class DeckNew extends Component {
 
 	handleTermChange = (e, cardNumber) => {
 		const { cards } = this.state.form
-		const { form } = this.state
+		let { form } = this.state
 		let currentCards = cards
 		let newCards = [...currentCards]
 		newCards[cardNumber] = { term: e.target.value, definition: '' }
-		let newForm = Object.assign({}, form)
-		newForm.cards = newCards
-		this.setState({ form: newForm })
+		form.cards = newCards
+		this.setState({ form: form })
 	}
 
-	handleDefChange = (e) => {
-		console.log('def', e.target.value)
+	handleDefChange = (e, cardNumber) => {
+		const { cards } = this.state.form
+		let { form } = this.state
+		let currentCards = cards
+		let newCards = [...currentCards]
+		const thisCard = cards[cardNumber]
+		newCards[cardNumber] = { ...thisCard, definition: e.target.value }
+		form.cards = newCards
+		this.setState({ form: form })
+		console.log('def', form)
 	}
 
 	render() {
 		return (
 			<div>
 				<h1>Create a New Deck</h1>
-				<TermCard
+				{/* <TermCard
 					cardNumber={0}
 					termChange={this.handleTermChange}
 					defChange={this.handleDefChange}
@@ -42,7 +62,15 @@ export class DeckNew extends Component {
 					cardNumber={1}
 					termChange={this.handleTermChange}
 					defChange={this.handleDefChange}
-				/>
+				/> */}
+				{this.state.form.cards.map((card, index) => (
+					<TermCard
+						key={index}
+						cardNumber={index}
+						termChange={this.handleTermChange}
+						defChange={this.handleDefChange}
+					/>
+				))}
 			</div>
 		)
 	}
