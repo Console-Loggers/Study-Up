@@ -87,4 +87,31 @@ RSpec.describe "Decks", type: :request do
         expect(response).to have_http_status(200)
     end
 
+    it 'cannot create a new deck without a title' do
+        deck_params = { 
+            deck: {
+                description: "JS terminology",
+                user_id: user.id
+            }
+        }
+        post '/decks', params: deck_params
+        deck = JSON.parse(response.body)
+
+        expect(deck['title']).to include "can't be blank"
+        expect(response).to have_http_status(422)
+    end    
+
+    it 'cannot create a new deck without a description' do
+        deck_params = { 
+            deck: {
+                title: 'Javascript',
+                user_id: user.id
+            }
+        }
+        post '/decks', params: deck_params
+        deck = JSON.parse(response.body)
+
+        expect(deck['description']).to include "can't be blank"
+        expect(response).to have_http_status(422)
+    end    
 end
