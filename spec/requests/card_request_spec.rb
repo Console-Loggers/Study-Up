@@ -89,6 +89,34 @@ let(:deck) { Deck.create title: 'JavaScript', description: 'JS terminology', use
     expect(response).to have_http_status(200)
     end
     
+    it 'cannot create a new card without a term' do
+        card_params = { 
+            card: {
+                definition:
+                'Components are the building blocks of any React app and a typical React app will have many of these.',
+                deck_id: deck.id,
+            }
+        }
+        post '/cards', params: card_params
+        card = JSON.parse(response.body)
+
+        expect(card['term']).to include "can't be blank"
+        expect(response).to have_http_status(422)
+    end   
+    
+    it 'cannot create a new card without a definition' do
+        card_params = { 
+            card: {
+                term: 'Component',
+                deck_id: deck.id,
+            }
+        }
+        post '/cards', params: card_params
+        card = JSON.parse(response.body)
+
+        expect(card['definition']).to include "can't be blank"
+        expect(response).to have_http_status(422)
+    end   
 end
 
   
