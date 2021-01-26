@@ -17,12 +17,10 @@ export class DeckIndex extends Component {
 						{myDecks.map((deck, index) => {
 							return (
 								<Link to={`/mydeck/${deck.id}`} key={index}>
-
-									<div className='deck-title-card' >
+									<div className='deck-title-card'>
 										<h4>{deck.title}</h4>
 										<p>{deck.description}</p>
 									</div>
-									
 								</Link>
 							)
 						})}
