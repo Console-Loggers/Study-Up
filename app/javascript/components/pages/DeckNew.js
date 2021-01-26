@@ -50,19 +50,29 @@ export class DeckNew extends Component {
 	}
 
 	render() {
+		const { form } = this.state
 		return (
 			<div>
 				<h1>Create a New Deck</h1>
-				{/* <TermCard
-					cardNumber={0}
-					termChange={this.handleTermChange}
-					defChange={this.handleDefChange}
-				/>
-				<TermCard
-					cardNumber={1}
-					termChange={this.handleTermChange}
-					defChange={this.handleDefChange}
-				/> */}
+				<form>
+					<label> Title </label>
+					<input
+						type='text'
+						name='title'
+						value={form.title}
+						onChange={this.handleChange}
+						placeholder='Enter a title for this deck.'
+					/>
+
+					<label> Description </label>
+					<input
+						type='text'
+						name='description'
+						value={form.description}
+						onChange={this.handleChange}
+						placeholder='Enter a description for this deck.'
+					/>
+				</form>
 				{this.state.form.cards.map((card, index) => (
 					<TermCard
 						key={index}
