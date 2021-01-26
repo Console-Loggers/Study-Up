@@ -30,9 +30,9 @@ class App extends Component {
 
 	// }
 
-	// createDeck = (newDeck) => {
-	//   console.log(newDeck);
-	// }
+	createDeck = (newDeck) => {
+		console.log(newDeck)
+	}
 
 	// updateDeck = (updateDeck, id) => {}
 
@@ -77,19 +77,31 @@ class App extends Component {
 						/>
 
 						{/* ----- Protected Deck Show ----- */}
-						<Route
-							path='/mydeck/:id'
-							render={(props) => {
-								const id = props.match.params.id
-								let deck = decks.find((deck) => deck.id === parseInt(id))
-								let myCards = cards.filter((card) => card.deck_id === deck.id)
-								console.log('app js show route', myCards)
-								return decks.length > 0 && <DeckShow myCards={myCards} />
-							}}
-						/>
+						{logged_in && (
+							<Route
+								path='/mydeck/:id'
+								render={(props) => {
+									const id = props.match.params.id
+									let deck = decks.find((deck) => deck.id === parseInt(id))
+									let myCards = cards.filter((card) => card.deck_id === deck.id)
+									console.log('app js show route', myCards)
+									return decks.length > 0 && <DeckShow myCards={myCards} />
+								}}
+							/>
+						)}
 
 						{/* ----- Protected Deck New ----- */}
-						<Route path='/decknew' component={DeckNew} />
+						<Route
+							path='/decknew'
+							render={(props) => {
+								return (
+									<DeckNew
+										createDeck={this.createDeck}
+										current_user={current_user}
+									/>
+								)
+							}}
+						/>
 
 						{/* ----- Protected Deck Edit ----- */}
 						{/* <Route path='/deckedit/:id' component={DeckEdit} /> */}

@@ -1,5 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
+import { Redirect } from 'react-router-dom'
 import TermCard from '../components/TermCard'
+import Button from '../components/Button'
 
 export class DeckNew extends Component {
 	constructor(props) {
@@ -49,10 +51,26 @@ export class DeckNew extends Component {
 		console.log('def', form)
 	}
 
+	handleAddCard = (card, index) => (
+		<TermCard
+			key={index}
+			cardNumber={index}
+			termChange={this.handleTermChange}
+			defChange={this.handleDefChange}
+		/>
+	)
+
+	handleSubmit = (e) => {
+		e.preventDefault()
+		console.log('handlesubmit clicked')
+		this.props.createDeck(this.state.form)
+		this.setState({ submitted: true })
+	}
+
 	render() {
 		const { form } = this.state
 		return (
-			<div>
+			<Fragment>
 				<h1>Create a New Deck</h1>
 				<form>
 					<label> Title </label>
@@ -81,7 +99,18 @@ export class DeckNew extends Component {
 						defChange={this.handleDefChange}
 					/>
 				))}
-			</div>
+				<Button className='button outline-button' onClick={this.handleAddCard}>
+					Add a Card
+				</Button>
+				<Button
+					className='button outline-button'
+					onSubmit={this.handleSubmit}
+					name='submit'
+				>
+					Create Deck
+				</Button>
+				{this.state.submitted && <Redirect to='/mydecks' />}
+			</Fragment>
 		)
 	}
 }
