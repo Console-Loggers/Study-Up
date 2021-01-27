@@ -22,4 +22,20 @@
 	font-size: 30px;
 }
 
+.icon-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.icon-styling {
+	color: #000000;
+	padding: 70px;
+}
+.icon-position1 {
+	flex-direction: row;
+	grid-row: auto;
+}
+
 /* End Home Page */
