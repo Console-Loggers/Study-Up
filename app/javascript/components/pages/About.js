@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react'
-import team from './aboutData'
+import { Link } from 'react-router-dom'
+import { FaLinkedin, FaGithubSquare } from 'react-icons/fa'
+import team from '../../aboutData'
 
 export class About extends Component {
 	render() {
@@ -61,6 +63,18 @@ export class About extends Component {
 										</div>
 										<div className='card-bio'>
 											<p>{person.bio}</p>
+										</div>
+									</div>
+									<div className='card-icon-wrapper'>
+										<div className='card-icon'>
+											<a href={person.linkedin} target='_blank'>
+												<FaLinkedin size={35} />
+											</a>
+										</div>
+										<div className='card-icon'>
+											<a href={person.github} target='_blank'>
+												<FaGithubSquare size={35} />
+											</a>
 										</div>
 									</div>
 								</div>
