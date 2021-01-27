@@ -1,3 +1,25 @@
-// Place all the styles related to the Home controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+/* Home Page */
+.home-container {
+	height: calc(100vh - 144px);
+	position: relative;
+}
+.hero-container {
+	background: url('https://www.alc.edu/wp-content/uploads/2019/05/chalkboard-background.jpg')
+		no-repeat center;
+	background-size: cover;
+	width: 100%;
+	height: 600px;
+}
+.home-title {
+	padding: 60px;
+	text-align: center;
+	color: white;
+	font-size: 30px;
+}
+.button-outline-button {
+	padding: 3px;
+	text-align: center;
+	font-size: 30px;
+}
+
+/* End Home Page */
