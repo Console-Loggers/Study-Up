@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import TermCard from './TermCard'
+import TermCard from '../components/TermCard'
 
 export class DeckNew extends Component {
 	constructor(props) {
