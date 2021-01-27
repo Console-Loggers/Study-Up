@@ -22,22 +22,20 @@ export class TermCard extends Component {
 		return (
 			<Fragment>
 				<div className='term-card'>
-					<form>
-						<label>Term</label>
-						<input
-							type='text'
-							name='term'
-							placeholder='Enter a Term'
-							onChange={(e) => termChange(e, cardNumber)}
-						/>
-						<label>Definition</label>
-						<input
-							type='text'
-							name='definition'
-							placeholder='Enter a Definition'
-							onChange={(e) => defChange(e, cardNumber)}
-						/>
-					</form>
+					<label>Term</label>
+					<input
+						type='text'
+						name='term'
+						placeholder='Enter a Term'
+						onChange={(e) => termChange(e, cardNumber)}
+					/>
+					<label>Definition</label>
+					<input
+						type='text'
+						name='definition'
+						placeholder='Enter a Definition'
+						onChange={(e) => defChange(e, cardNumber)}
+					/>
 				</div>
 			</Fragment>
 		)
