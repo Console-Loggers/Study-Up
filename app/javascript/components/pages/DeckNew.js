@@ -62,6 +62,7 @@ export class DeckNew extends Component {
 		let { form } = this.state
 		form.cards = [...cards, { term: '', definition: '' }]
 		this.setState({ form: form })
+		console.log('handleAddCard')
 	}
 
 	handleSubmit = (e) => {
@@ -96,28 +97,31 @@ export class DeckNew extends Component {
 						onChange={this.handleChange}
 						placeholder='Enter a description for this deck.'
 					/>
+					{this.state.form.cards.map((card, index) => (
+						<TermCard
+							key={index}
+							cardNumber={index}
+							termChange={this.handleTermChange}
+							defChange={this.handleDefChange}
+						/>
+					))}
+					<Button
+						type='button'
+						className='button outline-button'
+						onClick={() => this.handleAddCard()}
+					>
+						Add a Card
+					</Button>
+					<Button
+						type='submit'
+						className='button outline-button'
+						onClick={this.handleSubmit}
+						name='submit'
+					>
+						Create Deck
+					</Button>
 				</form>
-				{this.state.form.cards.map((card, index) => (
-					<TermCard
-						key={index}
-						cardNumber={index}
-						termChange={this.handleTermChange}
-						defChange={this.handleDefChange}
-					/>
-				))}
-				<Button
-					className='button outline-button'
-					onClick={() => this.handleAddCard()}
-				>
-					Add a Card
-				</Button>
-				<Button
-					className='button outline-button'
-					onClick={this.handleSubmit}
-					name='submit'
-				>
-					Create Deck
-				</Button>
+
 				{this.state.submitted && <Redirect to='/mydecks' />}
 			</Fragment>
 		)
