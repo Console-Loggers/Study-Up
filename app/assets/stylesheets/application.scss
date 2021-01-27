@@ -8,8 +8,8 @@
 @import 'deckIndex';
 @import 'deckShow';
 @import 'termCard';
-@import 'notFound' @import
-	url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+@import 'notFound';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
 
 :root {
 	--dark-grey: #231f20;
@@ -32,7 +32,6 @@ body {
 
 .app {
 	position: relative;
-	text-align: center;
 }
 
 /* Deck Index Page */

@@ -32,3 +32,5 @@ let team = [
 		image: './app/assets/images/alan.png',
 	},
 ]
+
+export default team
