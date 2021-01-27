@@ -17,18 +17,27 @@ class App extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			decks: decks,
+			decks: [],
 			cards: cards,
 		}
 	}
 
-	// componentDidMount() {
-	//   this.deckIndex()
-	// }
+	componentDidMount() {
+		this.deckIndex()
+	}
 
-	// deckIndex = () => {
-
-	// }
+	deckIndex = () => {
+		fetch('/decks')
+			.then((response) => {
+				return response.json()
+			})
+			.then((decks) => {
+				this.setState({ decks: decks })
+			})
+			.catch((error) => {
+				console.log('index errors:', error)
+			})
+	}
 
 	createDeck = (newDeck) => {
 		console.log(newDeck)
