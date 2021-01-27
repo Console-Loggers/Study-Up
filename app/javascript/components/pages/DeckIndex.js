@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Row, Col } from 'reactstrap'
+import Button from '../components/Button'
 
 export class DeckIndex extends Component {
 	render() {
@@ -25,6 +26,11 @@ export class DeckIndex extends Component {
 							)
 						})}
 					</Row>
+					<Link to={'/decknew'}>
+						<Button className='button outline-button'>
+							<span>Create New Deck</span>
+						</Button>
+					</Link>
 				</Container>
 			</Fragment>
 		)
