@@ -10,15 +10,15 @@ import DeckShow from "./pages/DeckShow"
 import Header from "./components/Header"
 import Footer from "./components/Footer"
 
-import decks from "../mockDecks.js"
-import cards from "../mockCards.js"
+// import decks from "../mockDecks.js"
+// import cards from "../mockCards.js"
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
       decks: [],
-      cards: cards,
+      cards: [],
     }
   }
 
@@ -27,12 +27,14 @@ class App extends Component {
   }
 
   deckIndex = () => {
-    fetch("/decks")
+    fetch(`/decks/${this.props.current_user.id}`)
       .then((response) => {
+        console.log("response", response)
         return response.json()
       })
       .then((decks) => {
-        this.setState({ decks: decks })
+        this.setState({ decks: decks, cards: cards })
+        console.log("after setState", this.state)
       })
       .catch((error) => {
         console.log("index errors:", error)
@@ -111,9 +113,7 @@ class App extends Component {
               <Route
                 path="/mydecks"
                 render={(props) => {
-                  const id = this.props.current_user.id
-                  let myDecks = decks.filter((deck) => deck.user_id === id)
-                  return <DeckIndex myDecks={myDecks} />
+                  return <DeckIndex decks={decks} />
                 }}
               />
 
