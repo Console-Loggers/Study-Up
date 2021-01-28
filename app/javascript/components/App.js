@@ -1,132 +1,163 @@
-import React, { Component, Fragment } from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import React, { Component, Fragment } from "react"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
-import Home from './pages/Home'
-import About from './pages/About'
-import NotFound from './pages/NotFound'
-import DeckIndex from './pages/DeckIndex'
-import DeckNew from './pages/DeckNew'
-import DeckShow from './pages/DeckShow'
-import Header from './components/Header'
-import Footer from './components/Footer'
+import Home from "./pages/Home"
+import About from "./pages/About"
+import NotFound from "./pages/NotFound"
+import DeckIndex from "./pages/DeckIndex"
+import DeckNew from "./pages/DeckNew"
+import DeckShow from "./pages/DeckShow"
+import Header from "./components/Header"
+import Footer from "./components/Footer"
 
-import decks from '../mockDecks.js'
-import cards from '../mockCards.js'
+import decks from "../mockDecks.js"
+import cards from "../mockCards.js"
 
 class App extends Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			decks: [],
-			cards: cards,
-		}
-	}
+  constructor(props) {
+    super(props)
+    this.state = {
+      decks: [],
+      cards: cards,
+    }
+  }
 
-	componentDidMount() {
-		this.deckIndex()
-	}
+  componentDidMount() {
+    this.deckIndex()
+  }
 
-	deckIndex = () => {
-		fetch('/decks')
-			.then((response) => {
-				return response.json()
-			})
-			.then((decks) => {
-				this.setState({ decks: decks })
-			})
-			.catch((error) => {
-				console.log('index errors:', error)
-			})
-	}
+  deckIndex = () => {
+    fetch("/decks")
+      .then((response) => {
+        return response.json()
+      })
+      .then((decks) => {
+        this.setState({ decks: decks })
+      })
+      .catch((error) => {
+        console.log("index errors:", error)
+      })
+  }
 
-	createDeck = (newDeck) => {
-		console.log(newDeck)
-	}
+  //   deckShow = (deck, id) => {
+  //     fetch(`/mydeck/${id}`)
+  //       .then((response) => {
+  //         return response.json()
+  //       })
+  //       .then((decks) => {
+  //         this.setState({ decks: decks, cards: cards })
+  //       })
+  //       .catch((error) => {
+  //         console.log("index errors:", error)
+  //       })
+  //   }
 
-	// updateDeck = (updateDeck, id) => {}
+  createDeck = (newDeck) => {
+    fetch("/decknew", {
+      body: JSON.stringify(newDeck),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+    })
+      .then((response) => {
+        if (response.status === 422) {
+          alert("Please Check Submission.")
+        }
+        return response.json()
+      })
+      .then((payload) => {
+        this.deckIndex()
+      })
+      .catch((errors) => {
+        console.log("create errors", errors)
+      })
+  }
 
-	// deleteDeck = (id) => {}
+  // updateDeck = (updateDeck, id) => {}
 
-	render() {
-		// console.log('decks in state', this.state)
+  // deleteDeck = (id) => {}
 
-		const {
-			logged_in,
-			current_user,
-			sign_in_route,
-			sign_out_route,
-		} = this.props
+  render() {
+    // console.log('decks in state', this.state)
 
-		const { decks, cards } = this.state
+    const {
+      logged_in,
+      current_user,
+      sign_in_route,
+      sign_out_route,
+    } = this.props
 
-		return (
-			<Fragment>
-				<div className='app'>
-					<Header
-						loggedIn={logged_in}
-						signIn={sign_in_route}
-						signOut={sign_out_route}
-					/>
+    const { decks, cards } = this.state
 
-					<Router>
-						<Switch>
-							{/* ----- Home ----- */}
-							<Route exact path='/' component={Home} />
+    return (
+      <Fragment>
+        <div className="app">
+          <Header
+            loggedIn={logged_in}
+            signIn={sign_in_route}
+            signOut={sign_out_route}
+          />
 
-							{/* ----- About ----- */}
-							<Route path='/about' component={About} />
+          <Router>
+            <Switch>
+              {/* ----- Home ----- */}
+              <Route exact path="/" component={Home} />
 
-							{/* ----- Protected Deck Index ----- */}
-							<Route
-								path='/mydecks'
-								render={(props) => {
-									const id = this.props.current_user.id
-									let myDecks = decks.filter((deck) => deck.user_id === id)
-									return <DeckIndex myDecks={myDecks} />
-								}}
-							/>
+              {/* ----- About ----- */}
+              <Route path="/about" component={About} />
 
-							{/* ----- Protected Deck Show ----- */}
-							{logged_in && (
-								<Route
-									path='/mydeck/:id'
-									render={(props) => {
-										const id = props.match.params.id
-										let deck = decks.find((deck) => deck.id === parseInt(id))
-										let myCards = cards.filter(
-											(card) => card.deck_id === deck.id
-										)
-										console.log('app js show route', myCards)
-										return decks.length > 0 && <DeckShow myCards={myCards} />
-									}}
-								/>
-							)}
+              {/* ----- Protected Deck Index ----- */}
+              <Route
+                path="/mydecks"
+                render={(props) => {
+                  const id = this.props.current_user.id
+                  let myDecks = decks.filter((deck) => deck.user_id === id)
+                  return <DeckIndex myDecks={myDecks} />
+                }}
+              />
 
-							{/* ----- Protected Deck New ----- */}
-							<Route
-								path='/decknew'
-								render={(props) => {
-									return (
-										<DeckNew
-											createDeck={this.createDeck}
-											current_user={current_user}
-										/>
-									)
-								}}
-							/>
+              {/* ----- Protected Deck Show ----- */}
+              {logged_in && (
+                <Route
+                  path="/mydeck/:id"
+                  render={(props) => {
+                    const id = props.match.params.id
+                    let deck = decks.find((deck) => deck.id === parseInt(id))
+                    let myCards = cards.filter(
+                      (card) => card.deck_id === deck.id
+                    )
+                    console.log("app js show route", myCards)
+                    return decks.length > 0 && <DeckShow myCards={myCards} />
+                  }}
+                />
+              )}
 
-							{/* ----- Protected Deck Edit ----- */}
-							{/* <Route path='/deckedit/:id' component={DeckEdit} /> */}
+              {/* ----- Protected Deck New ----- */}
+              <Route
+                path="/decknew"
+                render={(props) => {
+                  return (
+                    <DeckNew
+                      createDeck={this.createDeck}
+                      current_user={current_user}
+                    />
+                  )
+                }}
+              />
 
-							{/* ----- Not Found ----- */}
-							<Route component={NotFound} />
-						</Switch>
-					</Router>
-					<Footer />
-				</div>
-			</Fragment>
-		)
-	}
+              {/* ----- Protected Deck Edit ----- */}
+              {/* <Route path='/deckedit/:id' component={DeckEdit} /> */}
+
+              {/* ----- Not Found ----- */}
+              <Route component={NotFound} />
+            </Switch>
+          </Router>
+          <Footer />
+        </div>
+      </Fragment>
+    )
+  }
 }
 
 export default App
