@@ -1,8 +1,8 @@
 class DecksController < ApplicationController
 
     def index
-        decks = Deck.find(params[:user_id])
-        render json: decks
+        decks = Deck.where(user_id: current_user.id)
+        render json: decks.to_json(include: :cards)
     end
     
     def show

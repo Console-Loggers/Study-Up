@@ -29,27 +29,23 @@ export class DeckShow extends Component {
 		let lastIndex = cards.length - 1
 		if (index === 0) {
 			this.setState({ index: lastIndex })
+			this.onToggle()
 		} else if (index > 0) {
 			this.setState({ index: newIndex })
+			this.onToggle()
 		}
-
-		// if index = 0 then setState index: this.state.cards.length
-
-		console.log('newIndex:', this.state.index)
 	}
 
 	nextClick = () => {
 		const { cards, index } = this.state
 		let newIndex = index + 1
 		if (index < cards.length - 1) {
-			console.log('cards length', cards.length)
-			console.log('index', index)
 			this.setState({ index: newIndex })
+			this.onToggle()
 		} else if (index === cards.length - 1) {
 			this.setState({ index: 0 })
+			this.onToggle()
 		}
-
-		console.log('newIndex:', this.state.index)
 	}
 
 	render() {
