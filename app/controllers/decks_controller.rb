@@ -11,6 +11,7 @@ class DecksController < ApplicationController
     end
 
     def create
+        #deck_params[:user_id]=current_user.id
         deck = Deck.create(deck_params)
         if deck.valid?
             render json: deck

@@ -28,32 +28,20 @@ class App extends Component {
 	deckIndex = () => {
 		fetch('/decks')
 			.then((response) => {
-				console.log('response', response)
 				return response.json()
 			})
 			.then((decks) => {
 				this.setState({ decks: decks })
-				console.log('after setState', this.state)
 			})
 			.catch((error) => {
 				console.log('index errors:', error)
 			})
 	}
 
-	//   deckShow = (deck, id) => {
-	//     fetch(`/mydeck/${id}`)
-	//       .then((response) => {
-	//         return response.json()
-	//       })
-	//       .then((decks) => {
-	//         this.setState({ decks: decks, cards: cards })
-	//       })
-	//       .catch((error) => {
-	//         console.log("index errors:", error)
-	//       })
-	//   }
-
 	createDeck = (newDeck) => {
+		console.log("newDeck:", newDeck)
+		let userId = this.props.current_user.id
+		newDeck.user_id = userId
 		fetch('/decks', {
 			body: JSON.stringify(newDeck),
 			headers: {
@@ -62,13 +50,16 @@ class App extends Component {
 			method: 'POST',
 		})
 			.then((response) => {
+				console.log("create deck responce:", response)
 				if (response.status === 422) {
 					alert('Please Check Submission.')
 				}
+				
 				return response.json()
 			})
 			.then((payload) => {
 				this.deckIndex()
+				console.log("paylod:", payload)
 			})
 			.catch((errors) => {
 				console.log('create errors', errors)
