@@ -54,7 +54,6 @@ export class DeckNew extends Component {
 		newCards[cardNumber] = { ...thisCard, definition: e.target.value }
 		form.cards = newCards
 		this.setState({ form: form })
-		console.log('def', form)
 	}
 
 	handleAddCard = () => {
@@ -62,20 +61,16 @@ export class DeckNew extends Component {
 		let { form } = this.state
 		form.cards = [...cards, { term: '', definition: '' }]
 		this.setState({ form: form })
-		console.log('handleAddCard')
 	}
 
 	handleSubmit = (e) => {
 		e.preventDefault()
-		console.log('handlesubmit clicked')
 		this.props.createDeck(this.state.form)
-		console.log('handlesubmit', this.state.form)
 		this.setState({ submitted: true })
 	}
 
 	render() {
 		const { form } = this.state
-		console.log(form)
 		return (
 			<Fragment>
 				<h1>Create a New Deck</h1>
