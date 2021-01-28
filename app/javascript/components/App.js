@@ -10,15 +10,14 @@ import DeckShow from './pages/DeckShow'
 import Header from './components/Header'
 import Footer from './components/Footer'
 
-import decks from '../mockDecks.js'
-import cards from '../mockCards.js'
+// import decks from "../mockDecks.js"
+// import cards from "../mockCards.js"
 
 class App extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
 			decks: [],
-			cards: cards,
 		}
 	}
 
@@ -29,18 +28,51 @@ class App extends Component {
 	deckIndex = () => {
 		fetch('/decks')
 			.then((response) => {
+				console.log('response', response)
 				return response.json()
 			})
 			.then((decks) => {
 				this.setState({ decks: decks })
+				console.log('after setState', this.state)
 			})
 			.catch((error) => {
 				console.log('index errors:', error)
 			})
 	}
 
+	//   deckShow = (deck, id) => {
+	//     fetch(`/mydeck/${id}`)
+	//       .then((response) => {
+	//         return response.json()
+	//       })
+	//       .then((decks) => {
+	//         this.setState({ decks: decks, cards: cards })
+	//       })
+	//       .catch((error) => {
+	//         console.log("index errors:", error)
+	//       })
+	//   }
+
 	createDeck = (newDeck) => {
-		console.log(newDeck)
+		fetch('/decks', {
+			body: JSON.stringify(newDeck),
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			method: 'POST',
+		})
+			.then((response) => {
+				if (response.status === 422) {
+					alert('Please Check Submission.')
+				}
+				return response.json()
+			})
+			.then((payload) => {
+				this.deckIndex()
+			})
+			.catch((errors) => {
+				console.log('create errors', errors)
+			})
 	}
 
 	// updateDeck = (updateDeck, id) => {}
@@ -71,20 +103,21 @@ class App extends Component {
 					<Router>
 						<Switch>
 							{/* ----- Home ----- */}
+							{/* {!logged_in &&  />} */}
 							<Route exact path='/' component={Home} />
 
 							{/* ----- About ----- */}
 							<Route path='/about' component={About} />
 
 							{/* ----- Protected Deck Index ----- */}
-							<Route
-								path='/mydecks'
-								render={(props) => {
-									const id = this.props.current_user.id
-									let myDecks = decks.filter((deck) => deck.user_id === id)
-									return <DeckIndex myDecks={myDecks} />
-								}}
-							/>
+							{logged_in && (
+								<Route
+									path='/mydecks'
+									render={(props) => {
+										return <DeckIndex decks={decks} />
+									}}
+								/>
+							)}
 
 							{/* ----- Protected Deck Show ----- */}
 							{logged_in && (
@@ -93,9 +126,10 @@ class App extends Component {
 									render={(props) => {
 										const id = props.match.params.id
 										let deck = decks.find((deck) => deck.id === parseInt(id))
-										let myCards = cards.filter(
-											(card) => card.deck_id === deck.id
-										)
+										if (!deck) {
+											return <h6>Loading...</h6>
+										}
+										let myCards = deck.cards
 										console.log('app js show route', myCards)
 										return decks.length > 0 && <DeckShow myCards={myCards} />
 									}}

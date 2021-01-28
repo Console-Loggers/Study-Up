@@ -85,22 +85,22 @@ cards = [
     {
 		term: 'Ariel',
         definition: 'princess who lives under the sea',
-        deck_id: 4
+        deck_id: 2
 	},
 	{
 		term: 'Moana',
         definition: 'top favorite sea fairing princess of Motunui',
-        deck_id: 4
+        deck_id: 2
 	},
 	{
 		term: 'Elsa',
         definition: 'Let it go!',
-        deck_id: 4
+        deck_id: 2
     },
     {
 		term: 'Belle',
         definition: 'princess who sees inner beauty in the beast and enjoys a good book',
-        deck_id: 4
+        deck_id: 2
     },
 # title: 'Shapes',
 # description: 'Make sure to know different shapes',
@@ -121,12 +121,12 @@ cards = [
     {
         term: 'Monkey',
         definition: 'fuzzy creature that swings in trees',
-        deck_id: 3
+        deck_id: 4
     },
     {
         term: 'Pig',
         definition: 'pink omnivore found on the island of Motunui',
-        deck_id: 3
+        deck_id: 4
     }
 ]
 
