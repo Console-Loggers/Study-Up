@@ -121,7 +121,9 @@ class App extends Component {
 								<Route
 									path='/mydecks'
 									render={(props) => {
-										return <DeckIndex decks={decks} />
+										return (
+											<DeckIndex decks={decks} deleteDeck={this.deleteDeck} />
+										)
 									}}
 								/>
 							)}

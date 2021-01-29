@@ -6,7 +6,7 @@ import Button from '../components/Button'
 
 export class DeckIndex extends Component {
 	render() {
-		const { decks } = this.props
+		const { decks, deleteDeck } = this.props
 		return (
 			<Fragment>
 				<Container>
@@ -21,8 +21,8 @@ export class DeckIndex extends Component {
 								<>
 									<div className='deck-container'>
 										<div className='deck-content'>
-											<Link to={`/mydeck/${deck.id}`} key={index}>
-												<div className='deck-text-card'>
+											<Link to={`/mydeck/${deck.id}`}>
+												<div className='deck-text-card' key={index}>
 													<h4>{deck.title}</h4>
 													<p>{deck.description}</p>
 												</div>
@@ -36,7 +36,7 @@ export class DeckIndex extends Component {
 												</Link>
 											</div>
 											<div className='icons'>
-												<Link to={`deck/${deck.id}`}>
+												<Link to={`/mydecks`}>
 													<BsTrash
 														size={30}
 														onClick={() => deleteDeck(deck.id)}
