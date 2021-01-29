@@ -68,7 +68,23 @@ class App extends Component {
 
 	// updateDeck = (updateDeck, id) => {}
 
-	// deleteDeck = (id) => {}
+	// deleteDeck = (id) => {
+		return fetch(`/decks/${id}`, {
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			method: 'DELETE',
+		})
+			.then((response) => {
+				return response.json()
+			})
+			.then(() => {
+				this.deckIndex()
+			})
+			.catch((errors) => {
+				console.log('delete errors:', errors)
+			})
+	}
 
 	render() {
 		// console.log('decks in state', this.state)

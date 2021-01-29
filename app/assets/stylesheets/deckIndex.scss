@@ -1,0 +1,38 @@
+/* Deck Index Page */
+
+.deck-container {
+	border: 3px solid black;
+	width: 21rem;
+	height: 15rem;
+	padding: 2rem;
+	margin: 2rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	// align-items: center;
+	text-align: center;
+	position: relative;
+}
+
+.deck-text-card {
+}
+
+.deck-content {
+	border: 3px solid red;
+	margin-bottom: 25px;
+}
+
+.icon-container {
+	// border: 3px solid green;
+	position: absolute;
+	bottom: 0;
+	align-self: center;
+	margin-bottom: 7px;
+}
+
+.icons {
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+}
+
+/* End Deck Index Page */
