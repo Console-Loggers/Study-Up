@@ -39,7 +39,7 @@ class App extends Component {
 	}
 
 	createDeck = (newDeck) => {
-		console.log("newDeck:", newDeck)
+		console.log('newDeck:', newDeck)
 		let userId = this.props.current_user.id
 		newDeck.user_id = userId
 		fetch('/decks', {
@@ -50,16 +50,16 @@ class App extends Component {
 			method: 'POST',
 		})
 			.then((response) => {
-				console.log("create deck responce:", response)
+				console.log('create deck responce:', response)
 				if (response.status === 422) {
 					alert('Please Check Submission.')
 				}
-				
+
 				return response.json()
 			})
 			.then((payload) => {
 				this.deckIndex()
-				console.log("paylod:", payload)
+				console.log('paylod:', payload)
 			})
 			.catch((errors) => {
 				console.log('create errors', errors)
@@ -68,7 +68,7 @@ class App extends Component {
 
 	// updateDeck = (updateDeck, id) => {}
 
-	// deleteDeck = (id) => {
+	deleteDeck = (id) => {
 		return fetch(`/decks/${id}`, {
 			headers: {
 				'Content-Type': 'application/json',

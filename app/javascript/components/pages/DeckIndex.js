@@ -37,7 +37,10 @@ export class DeckIndex extends Component {
 											</div>
 											<div className='icons'>
 												<Link to={`deck/${deck.id}`}>
-													<BsTrash size={30} />
+													<BsTrash
+														size={30}
+														onClick={() => deleteDeck(deck.id)}
+													/>
 												</Link>
 											</div>
 										</div>
