@@ -45,7 +45,7 @@ header {
 }
 
 .primary-menu ul li a {
-	color: var(--dark-grey);
+	color: var(--primary-blue);
 	font-weight: 700;
 	text-decoration: none;
 	text-transform: uppercase;
@@ -54,7 +54,7 @@ header {
 }
 
 .primary-menu ul li a:hover {
-	background: var(--dark-grey);
-	color: var(--light-grey);
+	background: var(--primary-blue);
+	color: var(--primary-orange);
 }
 /* End of Header */
