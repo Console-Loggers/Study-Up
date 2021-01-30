@@ -1,7 +1,60 @@
-.person-img img {
-	height: 200px;
+.about-container {
+	max-width: 1100px;
+	margin: 50px auto;
+	overflow: auto;
+	padding: 0 40px;
+	text-align: center;
+}
+
+.about-heading {
+	text-transform: uppercase;
+	margin-bottom: 50px;
+}
+
+.about-group-content p {
+	font-size: 1.25rem;
+	margin-bottom: 1rem;
+}
+
+.team-card-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content: center;
+	margin: 100px auto;
+}
+
+.about-card {
+	border: none;
+	margin-bottom: 50px;
+}
+
+.about-image {
+	border-radius: 50%;
+	width: 250px;
+	align-self: center;
+}
+
+.about-text {
+}
+
+.card-icon-container {
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.card-icon {
+	margin-left: 5px;
+	margin-right: 5px;
 }
 
 .card-icon a {
 	cursor: pointer;
+	color: var(--primary-blue);
+}
+
+.card-icon a:hover {
+	color: var(--primary-orange);
 }

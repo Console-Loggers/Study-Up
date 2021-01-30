@@ -1,5 +1,14 @@
 import React, { Component, Fragment } from 'react'
-import { Link } from 'react-router-dom'
+import {
+	Card,
+	CardBody,
+	CardTitle,
+	CardText,
+	CardImg,
+	Row,
+	Col,
+} from 'reactstrap'
+
 import { FaLinkedin, FaGithubSquare } from 'react-icons/fa'
 import team from '../../aboutData'
 
@@ -8,7 +17,7 @@ export class About extends Component {
 		return (
 			<Fragment>
 				<div className='about-container'>
-					<div className='heading'>
+					<div className='about-heading'>
 						<h1>About Us</h1>
 					</div>
 
@@ -48,38 +57,40 @@ export class About extends Component {
 					</div>
 
 					<div className='team-card-container'>
-						{team.map((person, index) => {
-							return (
-								<div className='card' key={index}>
-									<div className='person-img'>
-										<img src={person.image} alt='' />
-									</div>
-									<div className='card-content'>
-										<div className='card-name'>
-											<h3>{person.name}</h3>
-										</div>
-										<div className='card-role'>
-											<h6>{person.role}</h6>
-										</div>
-										<div className='card-bio'>
-											<p>{person.bio}</p>
-										</div>
-									</div>
-									<div className='card-icon-wrapper'>
-										<div className='card-icon'>
-											<a href={person.linkedin} target='_blank'>
-												<FaLinkedin size={35} />
-											</a>
-										</div>
-										<div className='card-icon'>
-											<a href={person.github} target='_blank'>
-												<FaGithubSquare size={35} />
-											</a>
-										</div>
-									</div>
-								</div>
-							)
-						})}
+						<Row>
+							{team.map((person, index) => {
+								return (
+									<Col xs='12' md='6'>
+										<Card className='about-card' key={index}>
+											<CardImg
+												className='about-image'
+												top
+												width='100%'
+												src={person.image}
+												alt={person.name}
+											/>
+											<CardBody>
+												<CardTitle tag='h3'>{person.name}</CardTitle>
+												<CardTitle tag='h5'>{person.role}</CardTitle>
+												<CardText className='about-text'>{person.bio}</CardText>
+												<div className='card-icon-container'>
+													<div className='card-icon'>
+														<a href={person.linkedin} target='_blank'>
+															<FaLinkedin size={35} />
+														</a>
+													</div>
+													<div className='card-icon'>
+														<a href={person.github} target='_blank'>
+															<FaGithubSquare size={35} />
+														</a>
+													</div>
+												</div>
+											</CardBody>
+										</Card>
+									</Col>
+								)
+							})}
+						</Row>
 					</div>
 				</div>
 			</Fragment>

@@ -50,21 +50,6 @@ body {
 // 	position: relative;
 // }
 
-/* Deck Index Page */
-.deck-title-card {
-	width: 21rem;
-	height: 15rem;
-	border: 3px solid black;
-	padding: 2rem;
-	margin: 2rem;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-
-/* End Deck Index Page */
-
 /* Deck Show Page */
 
 // NOTE: todo: add generic class to handle similar styling between .deck-title-card and .deck-show-card?

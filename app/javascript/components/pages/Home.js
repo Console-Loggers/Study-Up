@@ -1,13 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import {
-	Card,
-	CardImg,
-	CardTitle,
-	CardText,
-	CardDeck,
-	CardSubtitle,
-	CardBody,
-} from 'reactstrap'
+import { Card, CardTitle, CardDeck, CardBody, Row, Col } from 'reactstrap'
 
 import Button from '../components/Button'
 import { BiPencil, BiSmile, BiGame, BiLandscape } from 'react-icons/bi'
@@ -43,6 +35,9 @@ export class Home extends Component {
 						</div>
 
 						<div className='icon-container'>
+							<Row>
+								<Col></Col>
+							</Row>
 							<CardDeck>
 								<Card className='m-5 home-card'>
 									<BiPencil className='icon' size={55} />
