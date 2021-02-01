@@ -52,7 +52,7 @@ export class DeckShow extends Component {
 			<Fragment>
 				<div className='show-card-container show-page'>
 					<div className='deck-show-card' onClick={this.onToggle}>
-						{!cards && isTerm && (
+						{isTerm && (
 							<>
 								<h4>{cards[index].term}</h4>
 							</>
