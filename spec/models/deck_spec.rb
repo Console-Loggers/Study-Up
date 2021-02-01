@@ -17,7 +17,7 @@ RSpec.describe Deck, type: :model do
         expect(deck.errors[:title]).to include "can't be blank"
       end
 
-    it "should have a valid title" do
+    it "should have a valid description" do
         deck = Deck.create(
 
             title: 'Javascript',

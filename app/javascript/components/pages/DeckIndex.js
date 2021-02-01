@@ -1,11 +1,12 @@
 import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Row, Col } from 'reactstrap'
+import { BsTrash, BsPencil } from 'react-icons/bs'
 import Button from '../components/Button'
 
 export class DeckIndex extends Component {
 	render() {
-		const { myDecks } = this.props
+		const { decks, deleteDeck } = this.props
 		return (
 			<Fragment>
 				<div className='deck-container'>
@@ -15,14 +16,42 @@ export class DeckIndex extends Component {
 						</Col>
 					</Row>
 					<Row>
-						{myDecks.map((deck, index) => {
+						{decks.map((deck, index) => {
 							return (
+
 								<Link to={`/mydeck/${deck.id}`} key={index}>
 									<div className='deck-card-title'>
 										<h4>{deck.title}</h4>
 										<p>{deck.description}</p>
+
+								<>
+									<div className='deck-container'>
+										<div className='deck-content'>
+											<Link to={`/mydeck/${deck.id}`}>
+												<div className='deck-text-card' key={index}>
+													<h4>{deck.title}</h4>
+													<p>{deck.description}</p>
+												</div>
+											</Link>
+										</div>
+
+										<div className='icon-container'>
+											<div className='icons'>
+												<Link to={`/decks/${deck.id}/edit`}>
+													<BsPencil size={30} />
+												</Link>
+											</div>
+											<div className='icons'>
+												<Link to={`/mydecks`}>
+													<BsTrash
+														size={30}
+														onClick={() => deleteDeck(deck.id)}
+													/>
+												</Link>
+											</div>
+										</div>
 									</div>
-								</Link>
+								</>
 							)
 						})}
 					</Row>
