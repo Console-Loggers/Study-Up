@@ -14,9 +14,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
 
 :root {
-	--dark-grey: #231f20;
-	--grey: #606060;
-	--light-grey: #eaeaea;
+	/* dark shades of primary colors */
+
+	--grey: #494643;
+
+	/* primary colors */
+	--primary-white: #f4ebe1;
+	--primary-blue: #0998dc;
+	--primary-orange: #f48d33;
+	--primary-grey: #181716;
+
+	/* lighter shades of primary colors */
 }
 
 * {
@@ -26,10 +34,16 @@
 	font-family: 'Montserrat', sans-serif;
 }
 
+html {
+	position: relative;
+	min-height: 100%;
+}
+
 body {
 	line-height: 1.6;
 	background: var(--light-grey);
 	color: var(--grey);
+	margin: 0 0 150px;
 }
 
 .app {
@@ -38,8 +52,6 @@ body {
 
 /* Deck Show Page */
 
-// NOTE: todo: add generic class to handle similar styling between .deck-title-card and .deck-show-card?
-// NOTE: todo: Get rid of scroll on "title" card but keep on "definition" card
 .deck-show-card {
 	cursor: pointer;
 	width: 25rem;
@@ -82,3 +94,4 @@ body {
 }
 
 /* End Deck Show Page */
+

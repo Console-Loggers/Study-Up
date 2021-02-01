@@ -1,18 +1,20 @@
 /* Footer */
 .footer-distributed {
 	width: 100%;
-	background: var(--dark-grey);
+	height: 150px;
+	background: var(--primary-blue);
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
 	text-align: left;
 	font-size: 1rem;
 	padding: 15px 35px;
-	position: fixed;
+	position: absolute;
 	bottom: 0;
 	left: 0;
+	overflow: hidden;
 }
 
 .footer-left p {
-	color: var(--light-grey);
+	color: var(--primary-white);
 	font-size: 18px;
 	margin: 0;
 	padding: 10px;
@@ -21,7 +23,7 @@
 .footer-links p {
 	font-size: 18px;
 	font-weight: bold;
-	color: var(--light-grey);
+	color: var(--primary-white);
 	margin: 0 0 10px;
 	padding: 0;
 	transition: ease 0.25s;
@@ -58,10 +60,10 @@ p.footer-links a {
 	display: inline-block;
 	width: 50px;
 	height: 50px;
-	background-color: var(--dark-grey);
+	background-color: var(--primary-blue);
 	border-radius: 2px;
 	font-size: 20px;
-	color: var(--light-grey);
+	color: var(--primary-white);
 	text-align: center;
 	line-height: 50px;
 	margin-left: 3px;
@@ -71,6 +73,7 @@ p.footer-links a {
 .footer-right a:hover {
 	transform: scale(1.1);
 	-webkit-transform: scale(1.1);
+	color: var(--primary-orange);
 }
 
 p.footer-links a:hover {

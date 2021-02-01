@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react'
+import { Card, CardTitle, CardDeck, CardBody, Row, Col } from 'reactstrap'
+
 import Button from '../components/Button'
-import { GiBookshelf, GiWhiteBook, GiBookmarklet } from 'react-icons/gi'
+import { BiPencil, BiSmile, BiGame, BiLandscape } from 'react-icons/bi'
 
 export class Home extends Component {
 	render() {
@@ -10,43 +12,52 @@ export class Home extends Component {
 					<div className='hero-container'>
 						<h1 className='home-title'>Welcome to Study Up</h1>
 						<div className='button-container'>
-							<Button className='button-outline-button'>
-								<span>Sign Up</span>
-							</Button>
+							<a href='/users/sign_up'>
+								<Button className='button white-solid-button'>
+									<span>Sign Up</span>
+								</Button>
+							</a>
 
-							<Button className='button-outline-button'>
-								<span>Login</span>
-							</Button>
+							<a href='/users/sign_in'>
+								<Button className='button  blue-solid-button'>
+									<span>Login</span>
+								</Button>
+							</a>
 						</div>
 					</div>
+
 					<div className='home-content-container'>
 						<div className='home-content-text'>
 							<h3>
-								We are study up and this is just a for example and hopefully it
-								looks good lmao
+								Create fully customizable flashcards for anything you need to
+								study! Conveniently access from anywhere!
 							</h3>
 						</div>
+
 						<div className='icon-container'>
-							<div className='icon-position1'>
-								<GiBookshelf size={35} className='icon-styling' />
-								<h1>
-									Step 1:
-									<br />
-									Create a Deck
-								</h1>
-							</div>
-							<GiWhiteBook className='icon-styling' />
-							<h1>
-								Step 2:
-								<br />
-								Add Cards
-							</h1>
-							<GiBookmarklet className='icon-styling' />
-							<h1>
-								Step 3:
-								<br />
-								StudyUp!
-							</h1>
+							<Row>
+								<Col></Col>
+							</Row>
+							<CardDeck>
+								<Card className='m-5 home-card'>
+									<BiPencil className='icon' size={55} />
+									<CardBody>
+										<CardTitle tag='h4'>Fully Customizable</CardTitle>
+									</CardBody>
+								</Card>
+								<Card className='m-5 home-card'>
+									<BiSmile className='icon' size={55} />
+									<CardBody>
+										<CardTitle tag='h4'>Easy to Use</CardTitle>
+									</CardBody>
+								</Card>
+								<Card className='m-5 home-card'>
+									<BiLandscape className='icon' size={55} />
+									<CardBody>
+										<CardTitle tag='h4'>Use Anywhere</CardTitle>
+									</CardBody>
+								</Card>
+							</CardDeck>
 						</div>
 					</div>
 				</div>

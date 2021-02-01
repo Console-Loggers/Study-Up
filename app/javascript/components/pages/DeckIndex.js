@@ -9,15 +9,21 @@ export class DeckIndex extends Component {
 		const { decks, deleteDeck } = this.props
 		return (
 			<Fragment>
-				<Container>
+				<div className='deck-container'>
 					<Row>
 						<Col xs='12' md='6' lg='4'>
-							<h1 className='page-title'>My Decks</h1>
+							<h1 className='deck-heading'>My Decks</h1>
 						</Col>
 					</Row>
 					<Row>
 						{decks.map((deck, index) => {
 							return (
+
+								<Link to={`/mydeck/${deck.id}`} key={index}>
+									<div className='deck-card-title'>
+										<h4>{deck.title}</h4>
+										<p>{deck.description}</p>
+
 								<>
 									<div className='deck-container'>
 										<div className='deck-content'>
@@ -54,7 +60,7 @@ export class DeckIndex extends Component {
 							<span>Create New Deck</span>
 						</Button>
 					</Link>
-				</Container>
+				</div>
 			</Fragment>
 		)
 	}
