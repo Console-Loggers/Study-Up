@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react"
 import { Redirect } from "react-router-dom"
 import TermCard from "../components/TermCard"
 import Button from "../components/Button"
-import { Form, FormGroup, Label, Input, FormText } from "reactstrap"
+import { Form, FormGroup, Label, Input, FormText, Container } from "reactstrap"
 
 export class DeckNew extends Component {
   constructor(props) {
@@ -74,34 +74,61 @@ export class DeckNew extends Component {
     const { form } = this.state
     return (
       <Fragment>
-        <h1>Create a New Deck</h1>
-        <Form>
-          <FormGroup>
-            <Label for="exampleEmail">Email</Label>
-            <Input
-              type="email"
-              name="email"
-              id="exampleEmail"
-              placeholder="with a placeholder"
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="examplePassword">Password</Label>
-            <Input
-              type="password"
-              name="password"
-              id="examplePassword"
-              placeholder="password placeholder"
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="exampleText">Text Area</Label>
-            <Input type="textarea" name="text" id="exampleText" />
-          </FormGroup>
+        <Container>
+          <h1>Create a New Deck</h1>
+          <Form>
+            <FormGroup>
+              <Label>Title</Label>
+              <Input
+                type="text"
+                name="title"
+                value={form.title}
+                onChange={this.handleChange}
+                placeholder="Enter a title for this deck."
+              />
+            </FormGroup>
+            <FormGroup>
+              <Label>Description</Label>
+              <Input
+                type="text"
+                name="description"
+                value={form.description}
+                onChange={this.handleChange}
+                placeholder="Enter a description for this deck."
+              />
+            </FormGroup>
 
-          <Button>Submit</Button>
-        </Form>
+            {this.state.form.cards.map((card, index) => (
+              <TermCard
+                key={index}
+                cardNumber={index}
+                termChange={this.handleTermChange}
+                defChange={this.handleDefChange}
+              />
+            ))}
 
+            <div className="add-button-container">
+              <Button
+                type="button"
+                className="button blue-outline-button sm-button"
+                onClick={() => this.handleAddCard()}
+              >
+                <span>Add a Card</span>
+              </Button>
+            </div>
+          </Form>
+
+          <div className="create-button-container">
+            <Button
+              type="submit"
+              className="button blue-solid-button"
+              onClick={this.handleSubmit}
+              name="submit"
+            >
+              <span>Create Deck</span>
+            </Button>
+          </div>
+        </Container>
         {this.state.submitted && <Redirect to="/mydecks" />}
       </Fragment>
     )
