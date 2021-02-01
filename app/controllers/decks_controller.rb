@@ -1,8 +1,7 @@
 class DecksController < ApplicationController
 
-    def index
+   def index
         decks = Deck.where(user_id: current_user.id)
-        # byebug
         render json: decks.to_json(include: :cards)
     end
     
@@ -13,14 +12,8 @@ class DecksController < ApplicationController
 
     def create
         #deck_params[:user_id]=current_user.id
-        # deck = Deck.create(deck_params)
-        byebug
-        deck = Deck.cards.build(deck_params)
-        byebug
-        if deck.save?
-            # deck.cards.create(deck_params)
-            byebug
-            
+        deck = Deck.create(deck_params)
+        if deck.valid?
             render json: deck
         else 
             render json: deck.errors, status: :unprocessable_entity

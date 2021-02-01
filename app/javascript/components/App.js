@@ -56,10 +56,11 @@ class App extends Component {
 				}
 
 				return response.json()
+				this.deckIndex()
 			})
 			.then(payload => {
 				this.deckIndex()
-				console.log('paylod:', payload)
+				console.log('payload:', payload)
 			})
 			.catch(errors => {
 				console.log('create errors', errors)
