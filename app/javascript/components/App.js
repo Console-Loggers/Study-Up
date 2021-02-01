@@ -42,6 +42,7 @@ class App extends Component {
 		console.log('newDeck:', newDeck)
 		let userId = this.props.current_user.id
 		newDeck.user_id = userId
+		newDeck.cards_attributes = newDeck.cards.filter(card => card.term !== '' && card.definition !== '' )
 		fetch('/decks', {
 			body: JSON.stringify(newDeck),
 			headers: {
