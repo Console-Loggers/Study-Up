@@ -18,13 +18,14 @@ export class DeckIndex extends Component {
 					<Row>
 						{decks.map((deck, index) => {
 							return (
-
-								<Link to={`/mydeck/${deck.id}`} key={index}>
-									<div className='deck-card-title'>
-										<h4>{deck.title}</h4>
-										<p>{deck.description}</p>
-
 								<>
+									<Link to={`/mydeck/${deck.id}`} key={index}>
+										<div className='deck-card-title'>
+											<h4>{deck.title}</h4>
+											<p>{deck.description}</p>
+										</div>
+									</Link>
+
 									<div className='deck-container'>
 										<div className='deck-content'>
 											<Link to={`/mydeck/${deck.id}`}>
@@ -55,11 +56,11 @@ export class DeckIndex extends Component {
 							)
 						})}
 					</Row>
-					<Link to={'/decknew'}>
+					<a href='/decknew'>
 						<Button className='button outline-button'>
 							<span>Create New Deck</span>
 						</Button>
-					</Link>
+					</a>
 				</div>
 			</Fragment>
 		)
