@@ -21,27 +21,27 @@ export class DeckIndex extends Component {
 								<Fragment key={index}>
 									<div className='deck-container'>
 										<div className='deck-content'>
-											<Link to={`/mydeck/${deck.id}`}>
+											<a href={`/mydeck/${deck.id}`}>
 												<div className='deck-text-card'>
 													<h4>{deck.title}</h4>
 													<p>{deck.description}</p>
 												</div>
-											</Link>
+											</a>
 										</div>
 
-										<div className='icon-container'>
-											<div className='icons'>
-												<Link to={`/deckedit/${deck.id}`}>
+										<div className='deck-icon-container'>
+											<div className='deck-icons'>
+												<a href={`/deckedit/${deck.id}`}>
 													<BsPencil size={30} />
-												</Link>
+												</a>
 											</div>
-											<div className='icons'>
-												<Link to={`/mydecks`}>
+											<div className='deck-icons'>
+												<a href={`/mydecks`}>
 													<BsTrash
 														size={30}
 														onClick={() => deleteDeck(deck.id)}
 													/>
-												</Link>
+												</a>
 											</div>
 										</div>
 									</div>
