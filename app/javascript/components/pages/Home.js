@@ -38,7 +38,7 @@ export class Home extends Component {
 							<Row>
 								<Col></Col>
 							</Row>
-							<CardDeck>
+							<CardDeck className='home-card-deck'>
 								<Card className='m-5 home-card'>
 									<BiPencil className='icon' size={55} />
 									<CardBody>
