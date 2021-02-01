@@ -30,10 +30,8 @@ export class DeckShow extends Component {
 		let lastIndex = cards.length - 1
 		if (index === 0) {
 			this.setState({ index: lastIndex })
-			this.onToggle()
 		} else if (index > 0) {
 			this.setState({ index: newIndex })
-			this.onToggle()
 		}
 	}
 
@@ -42,10 +40,8 @@ export class DeckShow extends Component {
 		let newIndex = index + 1
 		if (index < cards.length - 1) {
 			this.setState({ index: newIndex })
-			this.onToggle()
 		} else if (index === cards.length - 1) {
 			this.setState({ index: 0 })
-			this.onToggle()
 		}
 	}
 

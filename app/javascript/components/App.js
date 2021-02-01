@@ -23,6 +23,8 @@ class App extends Component {
 
 	componentDidMount() {
 		this.deckIndex()
+		console.log(process.env.REACT_APP_API_KEY)
+		console.log(this.state)
 	}
 
 	deckIndex = () => {
@@ -67,8 +69,6 @@ class App extends Component {
 			})
 	}
 
-	showDeck = () => {}
-
 	// updateDeck = (updateDeck, id) => {}
 
 	deleteDeck = id => {
@@ -86,6 +86,30 @@ class App extends Component {
 			})
 			.catch(errors => {
 				console.log('delete errors:', errors)
+			})
+	}
+
+	getDefinition = () => {
+		const { form, definition } = this.state
+		const api = `https://twinword-word-graph-dictionary.p.rapidapi.com/definition/?entry=${form.query}`
+		fetch(api, {
+			headers: {
+				'x-rapidapi-key': process.env.REACT_APP_API_KEY,
+				'x-rapidapi-host': 'twinword-word-graph-dictionary.p.rapidapi.com',
+			},
+			method: 'GET',
+		})
+			.then(response => {
+				console.log(response)
+				return response.json()
+			})
+			.then(payload => {
+				console.log(payload)
+				this.setState({ definition: payload.value })
+				console.log(definition)
+			})
+			.catch(err => {
+				console.error(err)
 			})
 	}
 
