@@ -7,6 +7,7 @@ import Button from '../components/Button'
 export class DeckShow extends Component {
 	constructor(props) {
 		super(props)
+		console.log(props)
 		this.state = {
 			cards: this.props.myCards,
 			index: 0,
@@ -55,7 +56,7 @@ export class DeckShow extends Component {
 			<Fragment>
 				<div className='show-card-container show-page'>
 					<div className='deck-show-card' onClick={this.onToggle}>
-						{isTerm && (
+						{!cards && isTerm && (
 							<>
 								<h4>{cards[index].term}</h4>
 							</>

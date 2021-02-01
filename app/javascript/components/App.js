@@ -27,18 +27,18 @@ class App extends Component {
 
 	deckIndex = () => {
 		fetch('/decks')
-			.then((response) => {
+			.then(response => {
 				return response.json()
 			})
-			.then((decks) => {
+			.then(decks => {
 				this.setState({ decks: decks })
 			})
-			.catch((error) => {
+			.catch(error => {
 				console.log('index errors:', error)
 			})
 	}
 
-	createDeck = (newDeck) => {
+	createDeck = newDeck => {
 		console.log('newDeck:', newDeck)
 		let userId = this.props.current_user.id
 		newDeck.user_id = userId
@@ -49,39 +49,41 @@ class App extends Component {
 			},
 			method: 'POST',
 		})
-			.then((response) => {
-				console.log('create deck responce:', response)
+			.then(response => {
+				console.log('create deck response:', response)
 				if (response.status === 422) {
 					alert('Please Check Submission.')
 				}
 
 				return response.json()
 			})
-			.then((payload) => {
+			.then(payload => {
 				this.deckIndex()
 				console.log('paylod:', payload)
 			})
-			.catch((errors) => {
+			.catch(errors => {
 				console.log('create errors', errors)
 			})
 	}
 
+	showDeck = () => {}
+
 	// updateDeck = (updateDeck, id) => {}
 
-	deleteDeck = (id) => {
+	deleteDeck = id => {
 		return fetch(`/decks/${id}`, {
 			headers: {
 				'Content-Type': 'application/json',
 			},
 			method: 'DELETE',
 		})
-			.then((response) => {
+			.then(response => {
 				return response.json()
 			})
 			.then(() => {
 				this.deckIndex()
 			})
-			.catch((errors) => {
+			.catch(errors => {
 				console.log('delete errors:', errors)
 			})
 	}
@@ -120,7 +122,7 @@ class App extends Component {
 							{logged_in && (
 								<Route
 									path='/mydecks'
-									render={(props) => {
+									render={props => {
 										return (
 											<DeckIndex decks={decks} deleteDeck={this.deleteDeck} />
 										)
@@ -132,9 +134,10 @@ class App extends Component {
 							{logged_in && (
 								<Route
 									path='/mydeck/:id'
-									render={(props) => {
+									render={props => {
+										console.log(props)
 										const id = props.match.params.id
-										let deck = decks.find((deck) => deck.id === parseInt(id))
+										let deck = decks.find(deck => deck.id === parseInt(id))
 										if (!deck) {
 											return <h6>Loading...</h6>
 										}
@@ -148,7 +151,7 @@ class App extends Component {
 							{/* ----- Protected Deck New ----- */}
 							<Route
 								path='/decknew'
-								render={(props) => {
+								render={props => {
 									return (
 										<DeckNew
 											createDeck={this.createDeck}
