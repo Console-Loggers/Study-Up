@@ -9,49 +9,43 @@ export class DeckIndex extends Component {
 		const { decks, deleteDeck } = this.props
 		return (
 			<Fragment>
-				<div className='deck-container'>
+				<Container>
 					<Row>
 						<Col xs='12' md='6' lg='4'>
-							<h1 className='deck-heading'>My Decks</h1>
+							<h1 className='page-title'>My Decks</h1>
 						</Col>
 					</Row>
 					<Row>
 						{decks.map((deck, index) => {
 							return (
-
-								<Link to={`/mydeck/${deck.id}`} key={index}>
-									<div className='deck-card-title'>
-										<h4>{deck.title}</h4>
-										<p>{deck.description}</p>
-
-								<>
+								<Fragment key={index}>
 									<div className='deck-container'>
 										<div className='deck-content'>
-											<Link to={`/mydeck/${deck.id}`}>
-												<div className='deck-text-card' key={index}>
+											<a href={`/mydeck/${deck.id}`}>
+												<div className='deck-text-card'>
 													<h4>{deck.title}</h4>
 													<p>{deck.description}</p>
 												</div>
-											</Link>
+											</a>
 										</div>
 
-										<div className='icon-container'>
-											<div className='icons'>
-												<Link to={`/decks/${deck.id}/edit`}>
+										<div className='deck-icon-container'>
+											<div className='deck-icons'>
+												<a href={`/deckedit/${deck.id}`}>
 													<BsPencil size={30} />
-												</Link>
+												</a>
 											</div>
-											<div className='icons'>
-												<Link to={`/mydecks`}>
+											<div className='deck-icons'>
+												<a href={`/mydecks`}>
 													<BsTrash
 														size={30}
 														onClick={() => deleteDeck(deck.id)}
 													/>
-												</Link>
+												</a>
 											</div>
 										</div>
 									</div>
-								</>
+								</Fragment>
 							)
 						})}
 					</Row>
@@ -60,7 +54,7 @@ export class DeckIndex extends Component {
 							<span>Create New Deck</span>
 						</Button>
 					</Link>
-				</div>
+				</Container>
 			</Fragment>
 		)
 	}

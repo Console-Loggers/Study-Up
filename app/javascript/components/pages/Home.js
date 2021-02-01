@@ -40,19 +40,19 @@ export class Home extends Component {
 							</Row>
 							<CardDeck>
 								<Card className='m-5 home-card'>
-									<BiPencil className='icon' size={55} />
+									<BiPencil className='home-icon' size={55} />
 									<CardBody>
 										<CardTitle tag='h4'>Fully Customizable</CardTitle>
 									</CardBody>
 								</Card>
 								<Card className='m-5 home-card'>
-									<BiSmile className='icon' size={55} />
+									<BiSmile className='home-icon' size={55} />
 									<CardBody>
 										<CardTitle tag='h4'>Easy to Use</CardTitle>
 									</CardBody>
 								</Card>
 								<Card className='m-5 home-card'>
-									<BiLandscape className='icon' size={55} />
+									<BiLandscape className='home-icon' size={55} />
 									<CardBody>
 										<CardTitle tag='h4'>Use Anywhere</CardTitle>
 									</CardBody>
