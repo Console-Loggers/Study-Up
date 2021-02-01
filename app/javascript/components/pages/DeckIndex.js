@@ -9,27 +9,20 @@ export class DeckIndex extends Component {
 		const { decks, deleteDeck } = this.props
 		return (
 			<Fragment>
-				<div className='deck-container'>
+				<Container>
 					<Row>
 						<Col xs='12' md='6' lg='4'>
-							<h1 className='deck-heading'>My Decks</h1>
+							<h1 className='page-title'>My Decks</h1>
 						</Col>
 					</Row>
 					<Row>
 						{decks.map((deck, index) => {
 							return (
-								<>
-									<Link to={`/mydeck/${deck.id}`} key={index}>
-										<div className='deck-card-title'>
-											<h4>{deck.title}</h4>
-											<p>{deck.description}</p>
-										</div>
-									</Link>
-
+								<Fragment key={index}>
 									<div className='deck-container'>
 										<div className='deck-content'>
 											<Link to={`/mydeck/${deck.id}`}>
-												<div className='deck-text-card' key={index}>
+												<div className='deck-text-card'>
 													<h4>{deck.title}</h4>
 													<p>{deck.description}</p>
 												</div>
@@ -38,7 +31,7 @@ export class DeckIndex extends Component {
 
 										<div className='icon-container'>
 											<div className='icons'>
-												<Link to={`/decks/${deck.id}/edit`}>
+												<Link to={`/deckedit/${deck.id}`}>
 													<BsPencil size={30} />
 												</Link>
 											</div>
@@ -52,16 +45,16 @@ export class DeckIndex extends Component {
 											</div>
 										</div>
 									</div>
-								</>
+								</Fragment>
 							)
 						})}
 					</Row>
-					<a href='/decknew'>
+					<Link to={'/decknew'}>
 						<Button className='button outline-button'>
 							<span>Create New Deck</span>
 						</Button>
-					</a>
-				</div>
+					</Link>
+				</Container>
 			</Fragment>
 		)
 	}
