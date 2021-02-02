@@ -17,6 +17,9 @@ class Header extends Component {
 								<a href='/'>Home</a>
 							</li>
 							<li>
+								<a href='/dictionary'>Dictionary</a>
+							</li>
+							<li>
 								<a href='/about'>About Us</a>
 							</li>
 							{loggedIn && (

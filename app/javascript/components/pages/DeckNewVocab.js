@@ -4,7 +4,7 @@ import TermCard from '../components/TermCard'
 import Button from '../components/Button'
 import { Form, FormGroup, Label, Input, FormText, Container } from 'reactstrap'
 
-export class DeckNew extends Component {
+export class DeckNewVocab extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -13,6 +13,8 @@ export class DeckNew extends Component {
 				description: '',
 				cards: [],
 			},
+			query: '',
+			definition: '',
 			submitted: false,
 		}
 	}
@@ -24,25 +26,30 @@ export class DeckNew extends Component {
 	}
 
 	handleTermChange = (e, cardNumber) => {
-		const { cards } = this.state.form
-		let { form } = this.state
-		let currentCards = cards
-		let newCards = [...currentCards]
-		newCards[cardNumber] = { term: e.target.value, definition: '' }
-		form.cards = newCards
-		this.setState({ form: form })
+		console.log(e.target.value)
+		this.setState({ query: e.target.value })
 	}
 
-	handleDefChange = (e, cardNumber) => {
-		const { cards } = this.state.form
-		let { form } = this.state
-		let currentCards = cards
-		let newCards = [...currentCards]
-		const thisCard = cards[cardNumber]
-		newCards[cardNumber] = { ...thisCard, definition: e.target.value }
-		form.cards = newCards
-		this.setState({ form: form })
-	}
+	// handleTermChange = (e, cardNumber) => {
+	// 	const { query } = this.state.form
+	// 	let { form } = this.state
+	// 	let currentCards = cards
+	// 	let newCards = [...currentCards]
+	// 	newCards[cardNumber] = { term: e.target.value, definition: '' }
+	// 	form.cards = newCards
+	// 	this.setState({ form: form })
+	// }
+
+	// setDefinitionCard = (meaning, cardNumber) => {
+	// 	const { cards } = this.state.form
+	// 	let { form } = this.state
+	// 	let currentCards = cards
+	// 	let newCards = [...currentCards]
+	// 	const thisCard = cards[cardNumber]
+	// 	newCards[cardNumber] = { ...thisCard, definition: meaning }
+	// 	form.cards = newCards
+	// 	this.setState({ form: form })
+	// }
 
 	handleAddCard = () => {
 		const { cards } = this.state.form
@@ -57,12 +64,38 @@ export class DeckNew extends Component {
 		this.setState({ submitted: true })
 	}
 
+	getDefinition = () => {
+		const { query, definition } = this.state
+		console.log(this.state)
+		const api = `https://twinword-word-graph-dictionary.p.rapidapi.com/definition/?entry=${query}`
+		fetch(api, {
+			headers: {
+				'x-rapidapi-key': process.env.REACT_APP_API_KEY,
+				'x-rapidapi-host': 'twinword-word-graph-dictionary.p.rapidapi.com',
+			},
+			method: 'GET',
+		})
+			.then(response => {
+				console.log(response)
+				return response.json()
+			})
+			.then(payload => {
+				console.log('payload:', payload)
+				this.setState({ definition: payload.meaning })
+			})
+			.catch(err => {
+				console.error(err)
+			})
+	}
+
 	render() {
 		const { form } = this.state
+		// console.log(form)
 		return (
 			<Fragment>
 				<Container>
-					<h1>Create a New Deck</h1>
+					<h1>Create a Vocab Deck</h1>
+
 					<Form>
 						<FormGroup>
 							<Label>Title</Label>
@@ -84,16 +117,33 @@ export class DeckNew extends Component {
 								placeholder='Enter a description for this deck.'
 							/>
 						</FormGroup>
+					
 
 						{this.state.form.cards.map((card, index) => (
+							<>
 							<TermCard
 								key={index}
 								cardNumber={index}
-								termChange={this.handleTermChange}
+								termChange={this.getDefinition}
 								defChange={this.handleDefChange}
-								query={this.query}
 							/>
+							<Button className='button blue-outline-button sm-button'>
+								<span>Search</span>
+							</Button>
+							</>
 						))}
+
+						{/* <FormGroup>
+							<Label>Term</Label>
+							<Input
+								type='text'
+								name='query'
+								value={form.query}
+								onChange={this.handleChange}
+								placeholder='Enter a vocab word for this card.'
+							/> */}
+
+						{/* </FormGroup> */}
 
 						<div className='add-button-container'>
 							<Button
@@ -123,4 +173,4 @@ export class DeckNew extends Component {
 	}
 }
 
-export default DeckNew
+export default DeckNewVocab

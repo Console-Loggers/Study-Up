@@ -6,6 +6,7 @@ import About from './pages/About'
 import NotFound from './pages/NotFound'
 import DeckIndex from './pages/DeckIndex'
 import DeckNew from './pages/DeckNew'
+import Dictionary from './pages/Dictionary'
 import DeckShow from './pages/DeckShow'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -27,21 +28,24 @@ class App extends Component {
 
 	deckIndex = () => {
 		fetch('/decks')
-			.then((response) => {
+			.then(response => {
 				return response.json()
 			})
-			.then((decks) => {
+			.then(decks => {
 				this.setState({ decks: decks })
 			})
-			.catch((error) => {
+			.catch(error => {
 				console.log('index errors:', error)
 			})
 	}
 
-	createDeck = (newDeck) => {
+	createDeck = newDeck => {
 		console.log('newDeck:', newDeck)
 		let userId = this.props.current_user.id
 		newDeck.user_id = userId
+		newDeck.cards_attributes = newDeck.cards.filter(
+			card => card.term !== '' && card.definition !== ''
+		)
 		fetch('/decks', {
 			body: JSON.stringify(newDeck),
 			headers: {
@@ -49,39 +53,62 @@ class App extends Component {
 			},
 			method: 'POST',
 		})
-			.then((response) => {
-				console.log('create deck responce:', response)
+			.then(response => {
+				console.log('create deck response:', response)
 				if (response.status === 422) {
 					alert('Please Check Submission.')
 				}
 
 				return response.json()
 			})
-			.then((payload) => {
+			.then(payload => {
+				newDeck.cards.forEach(card => {
+					this.createCard(card, payload.id)
+				})
 				this.deckIndex()
-				console.log('paylod:', payload)
+				console.log('payload:', payload)
 			})
-			.catch((errors) => {
+			.catch(errors => {
 				console.log('create errors', errors)
+			})
+	}
+	createCard = (newCard, deckId) => {
+		newCard.deck_id = deckId
+		fetch('/cards', {
+			body: JSON.stringify(newCard),
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			method: 'POST',
+		})
+			.then(response => {
+				console.log('create card response:', response)
+				if (response.status === 422) {
+					alert('Please Check Submission.')
+				}
+				return response.json()
+			})
+			.then(payload => {
+				console.log('payload')
 			})
 	}
 
 	// updateDeck = (updateDeck, id) => {}
 
-	deleteDeck = (id) => {
+	deleteDeck = id => {
 		return fetch(`/decks/${id}`, {
 			headers: {
 				'Content-Type': 'application/json',
 			},
 			method: 'DELETE',
 		})
-			.then((response) => {
+			.then(response => {
 				return response.json()
 			})
 			.then(() => {
 				this.deckIndex()
 			})
-			.catch((errors) => {
+			.catch(errors => {
 				console.log('delete errors:', errors)
 			})
 	}
@@ -111,7 +138,11 @@ class App extends Component {
 						<Switch>
 							{/* ----- Home ----- */}
 							{/* {!logged_in &&  />} */}
+
 							<Route exact path='/' component={Home} />
+
+							{/* ----- Dictionary ----- */}
+							<Route exact path='/dictionary' component={Dictionary} />
 
 							{/* ----- About ----- */}
 							<Route path='/about' component={About} />
@@ -120,7 +151,7 @@ class App extends Component {
 							{logged_in && (
 								<Route
 									path='/mydecks'
-									render={(props) => {
+									render={props => {
 										return (
 											<DeckIndex decks={decks} deleteDeck={this.deleteDeck} />
 										)
@@ -132,9 +163,10 @@ class App extends Component {
 							{logged_in && (
 								<Route
 									path='/mydeck/:id'
-									render={(props) => {
+									render={props => {
+										console.log(props)
 										const id = props.match.params.id
-										let deck = decks.find((deck) => deck.id === parseInt(id))
+										let deck = decks.find(deck => deck.id === parseInt(id))
 										if (!deck) {
 											return <h6>Loading...</h6>
 										}
@@ -148,9 +180,21 @@ class App extends Component {
 							{/* ----- Protected Deck New ----- */}
 							<Route
 								path='/decknew'
-								render={(props) => {
+								render={props => {
 									return (
 										<DeckNew
+											createDeck={this.createDeck}
+											current_user={current_user}
+										/>
+									)
+								}}
+							/>
+							{/* ----- Protected Deck Vocab New ----- */}
+							<Route
+								path='/decknewvocab'
+								render={props => {
+									return (
+										<DeckNewVocab
 											createDeck={this.createDeck}
 											current_user={current_user}
 										/>
