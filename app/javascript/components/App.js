@@ -42,7 +42,9 @@ class App extends Component {
 		console.log('newDeck:', newDeck)
 		let userId = this.props.current_user.id
 		newDeck.user_id = userId
-		newDeck.cards_attributes = newDeck.cards.filter(card => card.term !== '' && card.definition !== '' )
+		newDeck.cards_attributes = newDeck.cards.filter(
+			(card) => card.term !== '' && card.definition !== ''
+		)
 		fetch('/decks', {
 			body: JSON.stringify(newDeck),
 			headers: {
@@ -107,30 +109,6 @@ class App extends Component {
 			})
 			.catch((errors) => {
 				console.log('delete errors:', errors)
-			})
-	}
-
-	getDefinition = () => {
-		const { form, definition } = this.state
-		const api = `https://twinword-word-graph-dictionary.p.rapidapi.com/definition/?entry=${form.query}`
-		fetch(api, {
-			headers: {
-				'x-rapidapi-key': process.env.REACT_APP_API_KEY,
-				'x-rapidapi-host': 'twinword-word-graph-dictionary.p.rapidapi.com',
-			},
-			method: 'GET',
-		})
-			.then((response) => {
-				console.log(response)
-				return response.json()
-			})
-			.then((payload) => {
-				console.log(payload)
-				this.setState({ definition: payload.value })
-				console.log(definition)
-			})
-			.catch((err) => {
-				console.error(err)
 			})
 	}
 
@@ -200,6 +178,18 @@ class App extends Component {
 								render={(props) => {
 									return (
 										<DeckNew
+											createDeck={this.createDeck}
+											current_user={current_user}
+										/>
+									)
+								}}
+							/>
+							{/* ----- Protected Deck Vocab New ----- */}
+							<Route
+								path='/decknewvocab'
+								render={(props) => {
+									return (
+										<DeckNewVocab
 											createDeck={this.createDeck}
 											current_user={current_user}
 										/>

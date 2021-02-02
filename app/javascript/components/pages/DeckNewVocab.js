@@ -11,51 +11,40 @@ export class DeckNewVocab extends Component {
 			form: {
 				title: '',
 				description: '',
-				cards: [
-					{
-						term: '',
-						definition: '',
-					},
-					{
-						term: '',
-						definition: '',
-					},
-					{
-						term: '',
-						definition: '',
-					},
-				],
+				cards: [],
+				query: '',
+				definition: '',
 			},
 			submitted: false,
 		}
 	}
 
-	handleChange = e => {
+	handleChange = (e) => {
 		let { form } = this.state
 		form[e.target.name] = e.target.value
 		this.setState({ form: form })
 	}
 
-	// handleTermChange = (e, cardNumber) => {
-	// 	const { cards } = this.state.form
-	// 	let { form } = this.state
-	// 	let currentCards = cards
-	// 	let newCards = [...currentCards]
-	// 	newCards[cardNumber] = { term: e.target.value, definition: '' }
-	// 	form.cards = newCards
-	// 	this.setState({ form: form })
-	// }
+	handleTermChange = (e, cardNumber) => {
+		const { query } = this.state.form
+		let { form } = this.state
+		// let currentCards = cards
+		// let newCards = [...currentCards]
+		// newCards[cardNumber] = { term: e.target.value, definition: '' }
+		// form.cards = newCards
+		this.setState({ form: form })
+	}
 
-	// handleDefChange = (e, cardNumber) => {
-	// 	const { cards } = this.state.form
-	// 	let { form } = this.state
-	// 	let currentCards = cards
-	// 	let newCards = [...currentCards]
-	// 	const thisCard = cards[cardNumber]
-	// 	newCards[cardNumber] = { ...thisCard, definition: e.target.value }
-	// 	form.cards = newCards
-	// 	this.setState({ form: form })
-	// }
+	setDefinitionCard = (meaning, cardNumber) => {
+		const { cards } = this.state.form
+		let { form } = this.state
+		let currentCards = cards
+		let newCards = [...currentCards]
+		const thisCard = cards[cardNumber]
+		newCards[cardNumber] = { ...thisCard, definition: meaning }
+		form.cards = newCards
+		this.setState({ form: form })
+	}
 
 	handleAddCard = () => {
 		const { cards } = this.state.form
@@ -64,23 +53,40 @@ export class DeckNewVocab extends Component {
 		this.setState({ form: form })
 	}
 
-	handleSubmit = e => {
+	handleSubmit = (e) => {
 		e.preventDefault()
 		this.props.createDeck(this.state.form)
 		this.setState({ submitted: true })
 	}
 
-	// handleSubmit = e => {
-	// 	e.preventDefault()
-	// 	this.getDefinition()
-	// }
+	getDefinition = (term, cardNum) => {
+		const { form, definition } = this.state
+		const api = `https://twinword-word-graph-dictionary.p.rapidapi.com/definition/?entry=${term}`
+		fetch(api, {
+			headers: {
+				'x-rapidapi-key': process.env.REACT_APP_API_KEY,
+				'x-rapidapi-host': 'twinword-word-graph-dictionary.p.rapidapi.com',
+			},
+			method: 'GET',
+		})
+			.then((response) => {
+				console.log(response)
+				return response.json()
+			})
+			.then((payload) => {
+				setDefinitionCard(payload.meaning, cardNum)
+			})
+			.catch((err) => {
+				console.error(err)
+			})
+	}
 
 	render() {
 		const { form } = this.state
 		return (
 			<Fragment>
 				<Container>
-					<h1>Create a New Vocab Deck</h1>
+					<h1>Create a Vocab Deck</h1>
 					<Form>
 						<FormGroup>
 							<Label>Title</Label>
@@ -102,15 +108,23 @@ export class DeckNewVocab extends Component {
 								placeholder='Enter a description for this deck.'
 							/>
 						</FormGroup>
-
-						{this.state.form.cards.map((card, index) => (
-							<TermCard
-								key={index}
-								cardNumber={index}
-								termChange={this.handleTermChange}
-								defChange={this.handleDefChange}
+						<FormGroup>
+							<Label>Term</Label>
+							<Input
+								type='text'
+								name='term'
+								value={form.cards[0].term}
+								onChange={this.handleChange}
+								placeholder='Enter a vocab word for this card.'
 							/>
-						))}
+							<Button
+								type='submit'
+								className='button blue-outline-button sm-button'
+								onSubmit={() => this.getDefinition(form.cards[0].term, 0)}
+							>
+								<span>Search</span>
+							</Button>
+						</FormGroup>
 
 						<div className='add-button-container'>
 							<Button
@@ -130,7 +144,7 @@ export class DeckNewVocab extends Component {
 							onClick={this.handleSubmit}
 							name='submit'
 						>
-							<span>Create Vocab Deck</span>
+							<span>Create Deck</span>
 						</Button>
 					</div>
 				</Container>
