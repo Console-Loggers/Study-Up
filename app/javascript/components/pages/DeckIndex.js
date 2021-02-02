@@ -51,14 +51,14 @@ export class DeckIndex extends Component {
 					</Row>
 					<Link to={'/decknew'}>
 						<Button className='button blue-solid-button'>
-							<span>Create Custom Deck</span>
+							<span>Create a New Deck</span>
 						</Button>
 					</Link>
-					<Link to={'/decknewvocab'}>
+					{/* <Link to={'/decknewvocab'}>
 						<Button className='button blue-solid-button'>
 							<span>Create Vocab Deck</span>
 						</Button>
-					</Link>
+					</Link> */}
 				</Container>
 			</Fragment>
 		)
