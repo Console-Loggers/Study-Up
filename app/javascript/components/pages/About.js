@@ -33,16 +33,7 @@ export class About extends Component {
             </p>
 
             <p>
-              Amanda the “Tech Lead”, instituted the code specs and prioritized
-              key component functionality and usability. Along with Alan, the
-              “Design Lead”, guided the page's design and executed the UI in
-              responsiveness and styling. Chris in “Communications”, clarified
-              daily changes and tested backend structure to validate each
-              database. Along with Matt, the “Product Manager”, ensured
-              requirements were met and analyzed the Dictionary APIs specs to
-              incorporate into Study Up.
-            </p>
-            <p>
+
               Every aspect of Study Up individualizes their skills and
               formulates it into a fully customizable flashcard app. That idea
               of creating a simple flashcard app for all is only just the
