@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import { Row, FormGroup, Label, Input, Col } from 'reactstrap'
 
-export class TermCard extends Component {
+import Button from './Button'
+
+export class VocabCard extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -18,25 +20,36 @@ export class TermCard extends Component {
 		this.setState({ form: form })
 	}
 
+	searchSubmit = e => {
+		e.preventDefault()
+		this.setState({ query: e.target.value })
+	}
+
 	render() {
 		const { termChange, defChange, cardNumber } = this.props
 		return (
 			<Fragment>
 				<Row>
 					<Col md={6}>
-						<FormGroup>
-							<Label>Term</Label>
+						<FormGroup className='mb-2 mr-sm-2 mb-sm-0'>
+							<Label className='mr-sm-2'>Term</Label>
 							<Input
 								type='text'
 								name='term'
 								placeholder='Enter a Term'
-								onChange={e => termChange(e, cardNumber)}
+								onChange={e => termChange(e)}
 							/>
 						</FormGroup>
+						<Button
+							className='button blue-outline-button sm-button'
+							onClick={this.searchSubmit}
+						>
+							<span>Search</span>
+						</Button>
 					</Col>
 					<Col md={6}>
-						<FormGroup>
-							<Label>Definition</Label>
+						<FormGroup className='mb-2 mr-sm-2 mb-sm-0'>
+							<Label className='mr-sm-2'>Definition</Label>
 							<Input
 								type='text'
 								name='definition'
@@ -51,4 +64,4 @@ export class TermCard extends Component {
 	}
 }
 
-export default TermCard
+export default VocabCard

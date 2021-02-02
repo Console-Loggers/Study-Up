@@ -33,6 +33,7 @@ export class About extends Component {
             </p>
 
             <p>
+
               Every aspect of Study Up individualizes their skills and
               formulates it into a fully customizable flashcard app. That idea
               of creating a simple flashcard app for all is only just the

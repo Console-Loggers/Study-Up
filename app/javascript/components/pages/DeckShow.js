@@ -7,6 +7,7 @@ import Button from '../components/Button'
 export class DeckShow extends Component {
 	constructor(props) {
 		super(props)
+		console.log(props)
 		this.state = {
 			cards: this.props.myCards,
 			index: 0,
@@ -28,11 +29,9 @@ export class DeckShow extends Component {
 		let newIndex = index - 1
 		let lastIndex = cards.length - 1
 		if (index === 0) {
-			this.setState({ index: lastIndex })
-			this.onToggle()
+			this.setState({ index: lastIndex, isTerm: true })
 		} else if (index > 0) {
-			this.setState({ index: newIndex })
-			this.onToggle()
+			this.setState({ index: newIndex, isTerm: true })
 		}
 	}
 
@@ -40,11 +39,9 @@ export class DeckShow extends Component {
 		const { cards, index } = this.state
 		let newIndex = index + 1
 		if (index < cards.length - 1) {
-			this.setState({ index: newIndex })
-			this.onToggle()
+			this.setState({ index: newIndex, isTerm: true })
 		} else if (index === cards.length - 1) {
-			this.setState({ index: 0 })
-			this.onToggle()
+			this.setState({ index: 0, isTerm: true })
 		}
 	}
 
