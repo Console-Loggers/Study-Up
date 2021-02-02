@@ -17,7 +17,7 @@ export class DeckNew extends Component {
 		}
 	}
 
-	handleChange = (e) => {
+	handleChange = e => {
 		let { form } = this.state
 		form[e.target.name] = e.target.value
 		this.setState({ form: form })
@@ -51,7 +51,7 @@ export class DeckNew extends Component {
 		this.setState({ form: form })
 	}
 
-	handleSubmit = (e) => {
+	handleSubmit = e => {
 		e.preventDefault()
 		this.props.createDeck(this.state.form)
 		this.setState({ submitted: true })
@@ -91,6 +91,7 @@ export class DeckNew extends Component {
 								cardNumber={index}
 								termChange={this.handleTermChange}
 								defChange={this.handleDefChange}
+								query={this.query}
 							/>
 						))}
 
