@@ -11,7 +11,6 @@ export class VocabCard extends Component {
 				term: '',
 				definition: '',
 			},
-			query: '',
 		}
 	}
 

@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { Redirect } from 'react-router-dom'
-import VocabCard from '../components/VocabCard'
+import TermCard from '../components/TermCard'
 import Button from '../components/Button'
 import { Form, FormGroup, Label, Input, FormText, Container } from 'reactstrap'
 
@@ -117,16 +117,20 @@ export class DeckNewVocab extends Component {
 								placeholder='Enter a description for this deck.'
 							/>
 						</FormGroup>
-					</Form>
+					
 
-					<Form inline>
 						{this.state.form.cards.map((card, index) => (
-							<VocabCard
+							<>
+							<TermCard
 								key={index}
 								cardNumber={index}
 								termChange={this.getDefinition}
 								defChange={this.handleDefChange}
 							/>
+							<Button className='button blue-outline-button sm-button'>
+								<span>Search</span>
+							</Button>
+							</>
 						))}
 
 						{/* <FormGroup>
