@@ -6,7 +6,7 @@
 
 
 
-__Click here to [Study Up](put link here).__
+__Click here to [Study Up](https://studyup2021.herokuapp.com/).__
 
 
   __*Study Up*__ is an online flashcard studying app. Whether you are on the go and forgot your notebook and notes for class at home, or just trying to teach your little ones the difference between a cat and a dog, *Study Up* is for you!
@@ -23,12 +23,6 @@ __Click here to [Study Up](put link here).__
 * You can add as many `Decks` as you need to your __*Study Up*__ account.
 * Spelling for `terms` and `definitions` can be turned on to add our integrated __[Twinword Dictionary API](https://www.twinword.com/api/word-dictionary.php),__ for your convenience.
 
-
-<!-- ![Image of Home Page](https://) -->
-
-<!-- ![Image of Index Page](https://) -->
-
-<!-- ![Image of Show Page](https://) -->
 
 ## Built Using
 
