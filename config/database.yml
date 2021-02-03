@@ -80,7 +80,8 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
-  <<: *default
-  database: study_up_production
-  username: study_up
-  password: <%= ENV['STUDY_UP_DATABASE_PASSWORD'] %>
+  # <<: *default
+  # database: study_up_production
+  # username: study_up
+  # password: <%= ENV['STUDY_UP_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
