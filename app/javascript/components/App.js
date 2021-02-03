@@ -10,10 +10,6 @@ import Dictionary from './pages/Dictionary'
 import DeckShow from './pages/DeckShow'
 import Header from './components/Header'
 import Footer from './components/Footer'
-
-// import decks from "../mockDecks.js"
-// import cards from "../mockCards.js"
-
 class App extends Component {
 	constructor(props) {
 		super(props)
@@ -72,6 +68,7 @@ class App extends Component {
 				console.log('create errors', errors)
 			})
 	}
+
 	createCard = (newCard, deckId) => {
 		newCard.deck_id = deckId
 		fetch('/cards', {
@@ -114,8 +111,6 @@ class App extends Component {
 	}
 
 	render() {
-		// console.log('decks in state', this.state)
-
 		const {
 			logged_in,
 			current_user,
@@ -137,8 +132,6 @@ class App extends Component {
 					<Router>
 						<Switch>
 							{/* ----- Home ----- */}
-							{/* {!logged_in &&  />} */}
-
 							<Route exact path='/' component={Home} />
 
 							{/* ----- Dictionary ----- */}
@@ -183,18 +176,6 @@ class App extends Component {
 								render={props => {
 									return (
 										<DeckNew
-											createDeck={this.createDeck}
-											current_user={current_user}
-										/>
-									)
-								}}
-							/>
-							{/* ----- Protected Deck Vocab New ----- */}
-							<Route
-								path='/decknewvocab'
-								render={props => {
-									return (
-										<DeckNewVocab
 											createDeck={this.createDeck}
 											current_user={current_user}
 										/>

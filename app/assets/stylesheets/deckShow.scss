@@ -1,7 +1,3 @@
-/* Deck Show Page */
-
-// NOTE: todo: add generic class to handle similar styling between .deck-title-card and .deck-show-card?
-// NOTE: todo: Get rid of scroll on "title" card but keep on "definition" card
 .deck-show-card {
 	cursor: pointer;
 	width: 25rem;
@@ -40,5 +36,3 @@
 	align-self: flex-end;
 	cursor: pointer;
 }
-
-/* End Deck Show Page */
