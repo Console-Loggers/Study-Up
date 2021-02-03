@@ -1,12 +1,6 @@
-/* Home Page */
 .home-container {
-	height: 100vh;
-	position: relative;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
-	padding-bottom: 50px;
+	overflow: auto;
+	text-align: center;
 }
 
 .hero-container {
@@ -18,7 +12,7 @@
 }
 
 .home-title {
-	margin-top: 50px;
+	// margin-top: 50px;
 	padding: 60px;
 	text-align: center;
 	color: var(--primary-white);
@@ -47,7 +41,6 @@
 }
 
 .home-card {
-	// width: 100%;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
@@ -66,4 +59,3 @@
 	margin-top: 15px;
 	color: var(--primary-orange);
 }
-/* End Home Page */

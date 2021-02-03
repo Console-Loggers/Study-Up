@@ -13,16 +13,19 @@ export class Footer extends Component {
 			<Fragment>
 				<footer className='footer-distributed'>
 					<div className='footer-right'>
-						<a href='https://www.facebook.com'>
+						<a href='https://www.facebook.com' target='_blank'>
 							<FaFacebookSquare size={40} />
 						</a>
-						<a href='https://www.twitter.com'>
+						<a href='https://www.twitter.com' target='_blank'>
 							<FaTwitterSquare size={40} />
 						</a>
-						<a href='https://www.linkedin.com'>
+						<a href='https://www.linkedin.com' target='_blank'>
 							<FaLinkedin size={40} />
 						</a>
-						<a href='https://www.github.com'>
+						<a
+							href='https://github.com/Console-Loggers/Study-Up'
+							target='_blank'
+						>
 							<FaGithubSquare size={40} />
 						</a>
 					</div>

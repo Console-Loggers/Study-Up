@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react'
+import { Redirect } from 'react-router-dom'
 import { Card, CardTitle, CardDeck, CardBody, Row, Col } from 'reactstrap'
 
 import Button from '../components/Button'
-import { BiPencil, BiSmile, BiGame, BiLandscape } from 'react-icons/bi'
+import { BiPencil, BiSmile, BiLandscape } from 'react-icons/bi'
 
 export class Home extends Component {
 	render() {
